@@ -34,10 +34,8 @@ server.listen(port, () => {
 });
 
 app.set('views', './views')
-app.engine('hbs', exphbs({
-    extname: '.hbs'
-}));
-app.set('view engine', '.hbs');
+
+app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
 //Models
