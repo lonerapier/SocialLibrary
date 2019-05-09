@@ -36,10 +36,7 @@ module.exports = function(passport, user) {
                         firstname: req.body.firstname,
                         lastname: req.body.lastname
                     };
-                    console.log('bbbbbbb');
                     User.create(data, {fields: ['email','password','firstname','lastname']}).then(function(newUser, created) {
-                        console.log(newUser);
-                        console.log('a');
                         if (!newUser) {
                             return done(null, false);
                         }
