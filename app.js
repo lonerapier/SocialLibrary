@@ -2,6 +2,7 @@ var express = require('express');
 var logger = require('morgan');
 var passport   = require('passport');
 var session    = require('express-session');
+var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var env = require('dotenv').config();
@@ -16,6 +17,8 @@ app.use(logger('dev'));
 // Parse incoming requests data (https://github.com/expressjs/body-parser)
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
+
 app.use(cookieParser());
 
 // For Passport
@@ -33,6 +36,12 @@ app.set('port', port);
 const server = http.createServer(app);
 server.listen(port, () => {
     console.log("Listening on port " + port);
+});
+
+app.get("*", (req, res, next) => {
+    res.locals.user = req.user || null;
+    console.log("User: " + res.locals.user);
+    next();
 });
 
 app.set('views', './views')
