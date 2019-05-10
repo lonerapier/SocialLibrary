@@ -3,6 +3,7 @@ var logger = require('morgan');
 var passport   = require('passport');
 var session    = require('express-session');
 var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
 var env = require('dotenv').config();
 var exphbs = require('express-handlebars');
 // This will be our application entry. We'll setup our server here.
@@ -15,6 +16,7 @@ app.use(logger('dev'));
 // Parse incoming requests data (https://github.com/expressjs/body-parser)
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 // For Passport
 app.use(session({ secret: 'keyboard cat',resave: true, saveUninitialized:true})); // session secret
