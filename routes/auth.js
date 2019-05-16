@@ -19,6 +19,10 @@ var router = express.Router();
         res.render('addbooks', {user: req.user});
     });
 
+     router.get('/profile', function(req, res) {
+        res.render('profile', {user: req.user});
+    });
+
     router.post('/addbooks', addController.addBooks);
 
     function isLoggedIn(req, res, next) {
