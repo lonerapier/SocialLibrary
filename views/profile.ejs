@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>MediBay | Profile</title>
+    <title>Social Library | Profile</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/sheet.css">
     <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
@@ -22,7 +22,7 @@
         <% if (locals.user) { %>
             <div class="col mb-3">
                 <div class="profile-head">
-                    <h3><%= user.email %>
+                    <h3>Your Profile
                     <a href="/update">
                         <button class="float-right btn btn-info my-2" type="submit">Edit Profile</button>
                     </a>
@@ -36,7 +36,7 @@
                         <label>Name</label>
                     </div>
                     <div class="col mb-4">
-                        <p><%= user.firstname %></p>
+                        <p><%= user.firstname %> <%= user.lastname%></p>
                     </div>
                 </div>
                 <div class="row">
@@ -47,14 +47,30 @@
                         <p><%= user.email %></p>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col mb-4">
+                        <label>Contact details</label>
+                    </div>
+                    <div class="col mb-4">
+                        <p><%= user.phone %></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col mb-4">
+                        <label>City</label>
+                    </div>
+                    <div class="col mb-4">
+                        <p><%= user.city %></p>
+                    </div>
+                </div>
             </div>
-            
+           
         <% } else { %>
             <p>
                 You are not a valid user. Please <a href="/register">Sign Up</a>
             </p>
             <p>Have an Account?
-                <a href="/login">Sign In</a>
+                <a href="/signin">Sign In</a>
             </p>
         <% } %>
     </div>

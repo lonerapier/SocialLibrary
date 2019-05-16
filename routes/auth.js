@@ -1,6 +1,7 @@
 var express = require('express');
 var authController = require('../controllers/authcontroller');
 var addController = require('../controllers/addcontroller');
+var listController = require('../controllers/listcontroller');
 var router = express.Router();
 
     router.get('/signup', authController.getSignup);
@@ -14,14 +15,16 @@ var router = express.Router();
     router.get('/dashboard',isLoggedIn, authController.dashboard);
 
     router.get('/logout',authController.logout);
+    
+    router.get('/profile',listController.listbooks);
 
     router.get('/addbooks', function(req, res) {
         res.render('addbooks', {user: req.user});
     });
 
-     router.get('/profile', function(req, res) {
+    /* router.get('/profile', function(req, res) {
         res.render('profile', {user: req.user});
-    });
+    });*/
 
     router.get('/update', function(req, res) {
         res.render('update', {user: req.user});
