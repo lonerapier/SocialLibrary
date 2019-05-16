@@ -1,5 +1,6 @@
 var express = require('express');
 var authController = require('../controllers/authcontroller');
+var addController = require('../controllers/addcontroller');
 var router = express.Router();
 
     router.get('/signup', authController.getSignup);
@@ -13,6 +14,12 @@ var router = express.Router();
     router.get('/dashboard',isLoggedIn, authController.dashboard);
 
     router.get('/logout',authController.logout);
+
+    router.get('/addbooks', function(req, res) {
+        res.render('addbooks', {user: req.user});
+    });
+
+    router.post('/addbooks', addController.addBooks);
 
     function isLoggedIn(req, res, next) {
         if (req.isAuthenticated())

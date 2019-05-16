@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SocialLibrary | Sell</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/sheet.css">
+    <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="css/mdb.min.css" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="css/style.css" rel="stylesheet">
+
+</head>
+<body>
+    <% include partials/header %>
+    <div class="container">
+        <% if (locals.user) { %>
+            <form class="text border border-light p-5" method="post" action="/addbooks">
+
+                <p class="h2 mb-4">Add New book Sell Listing</p>
+
+                <!-- User Name -->
+                <h3 class ="mb-3"><%= user.name %></h3>
+
+                <!-- Name -->
+                <p>Book Title</p>
+                <input type="name" id="defaultUpdateFormname" class="form-control mb-4" name="name">
+
+                <!-- ISBN -->
+                <p>ISBN</p>
+                <input type="text" id="defaultUpdateFormname" class="form-control mb-4" name="ISBN">
+
+                <!-- Submit button -->
+                <button class="btn btn-info my-4 btn-block" type="submit">Create Listing</button>
+                <hr>
+        <% } else { %>
+            <p>
+                You are not a valid user. Please <a href="/signup">Sign Up</a>
+            </p>
+            <p>Have an Account?
+                <a href="/signin">Sign In</a>
+            </p>
+        <% } %>
+    </div>
+    <% include partials/footer %>
+</body>
+</html>
