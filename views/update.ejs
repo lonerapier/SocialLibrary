@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> SocialLibrary | Register</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/sheet.css">
+    <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="css/mdb.min.css" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <% include partials/header %>
+    <div class="container">
+        <% if (locals.user) { %>
+            <form class="text border border-light p-5" method="post" action="/update">
+
+                <p class="h2 mb-4">Update Profile</p>
+
+                <!-- First Name -->
+                <p>First Name</p>
+                <input type="firstname" id="defaultUpdateFormname" class="form-control mb-4" value="<%= user.firstname %>" placeholder="<%= user.firstname %>" name="firstname">
+
+                <!-- Last Name -->
+                <p>Last Name</p>
+                <input type="lastname" id="defaultUpdateFormname" class="form-control mb-4" value="<%= user.lastname %>" placeholder="<%= user.lastname %>" name="lastname">
+
+
+                <!-- E-mail -->
+                <p>E-mail</p>
+                <input type="email" id="defaultUpdateFormEmail" class="form-control mb-4" value="<%= user.email %>" placeholder="<%= user.email %>" name="email">
+
+                <!-- Password
+                <input type="password" id="defaultUpdateFormPassword" class="form-control mb-4" placeholder="Password" name="password"> -->
+
+                <!-- City -->
+                <p>City</p>
+                <input type="city" id="defaultUpdateFormEmail" class="form-control mb-4" value="<%= user.city %>" placeholder="<%= user.city %>" name="city">
+
+                <!-- Phone -->
+                <p>Phone</p>
+                <input type="phone" id="defaultUpdateFormEmail" class="form-control mb-4" value="<%= user.phone %>" placeholder="<%= user.phone %>" name="phone">
+                <!-- <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+                    At least 8 characters and 1 digit
+                </small> -->
+
+                <!-- Phone number -->
+                <!-- <input type="text" id="defaultRegisterPhonePassword" class="form-control" placeholder="Phone number" aria-describedby="defaultRegisterFormPhoneHelpBlock">
+                <small id="defaultRegisterFormPhoneHelpBlock" class="form-text text-muted mb-4">
+                    Optional - for two step authentication
+                </small> -->
+
+                <!-- Newsletter -->
+                <!-- <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="defaultRegisterFormNewsletter">
+                    <label class="custom-control-label" for="defaultRegisterFormNewsletter">Subscribe to our newsletter</label>
+                </div> -->
+
+                <!-- Sign up button -->
+                <button class="btn btn-info my-4 btn-block" type="submit">Update</button>
+
+                <!-- Social register -->
+                <!-- <p>or sign up with:</p>
+
+                <a type="button" class="light-blue-text mx-2">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a type="button" class="light-blue-text mx-2">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a type="button" class="light-blue-text mx-2">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a type="button" class="light-blue-text mx-2">
+                    <i class="fab fa-github"></i>
+                </a> -->
+
+                <hr>
+        <% } else { %>
+            <p>
+                You are not a valid user. Please <a href="/signup">Sign Up</a>
+            </p>
+            <p>Have an Account?
+                <a href="/signin">Sign In</a>
+            </p>
+        <% } %>
+    </div>
+    <% include partials/footer %>
+</body>
+</html>

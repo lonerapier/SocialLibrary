@@ -23,6 +23,12 @@ var router = express.Router();
         res.render('profile', {user: req.user});
     });
 
+    router.get('/update', function(req, res) {
+        res.render('update', {user: req.user});
+    });
+
+    router.post('/update', authController.updateProfile);
+
     router.post('/addbooks', addController.addBooks);
 
     function isLoggedIn(req, res, next) {
