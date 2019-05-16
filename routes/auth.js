@@ -1,21 +1,23 @@
+var express = require('express');
 var authController = require('../controllers/authcontroller');
+var router = express.Router();
 
-module.exports = function(app) {
-    app.get('/signup', authController.getSignup);
+    router.get('/signup', authController.getSignup);
 
-    app.post('/signup', authController.postSignup);
+    router.post('/signup', authController.postSignup);
 
-    app.get('/signin', authController.getSignin);
+    router.get('/signin', authController.getSignin);
 
-    app.post('/signin', authController.postSignin);
+    router.post('/signin', authController.postSignin);
 
-    app.get('/dashboard',isLoggedIn, authController.dashboard);
+    router.get('/dashboard',isLoggedIn, authController.dashboard);
 
-    app.get('/logout',authController.logout);
+    router.get('/logout',authController.logout);
 
     function isLoggedIn(req, res, next) {
         if (req.isAuthenticated())
             return next();
         res.redirect('/signin');
     }
-}
+
+module.exports = router;

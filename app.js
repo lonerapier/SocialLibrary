@@ -51,7 +51,8 @@ app.use(express.static('public'));
 var models = require("./models");
 
 //Routes
-var authRoute = require('./routes/auth.js')(app);
+var authRoute = require('./routes/auth.js');
+app.use('/',authRoute);
 
 //load passport strategies
 require('./config/passport/passport.js')(passport, models.user);
