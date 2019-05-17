@@ -27,14 +27,38 @@
                 <!-- User Name -->
                 <h3 class ="mb-3"><%= user.name %></h3>
 
-                <!-- Name -->
-                <p>Book Title</p>
-                <input type="name" id="defaultUpdateFormname" class="form-control mb-4" name="name">
-
                 <!-- ISBN -->
                 <p>ISBN</p>
-                <input type="text" id="defaultUpdateFormname" class="form-control mb-4" name="ISBN">
+                <input type="text" id="addListISBN" class="form-control mb-4" name="ISBN">
+                
+                <!-- Name -->
+                <p>Book Title</p>
+                <input type="text" id="addListTitle" class="form-control mb-4" name="title">
 
+                <!-- Genre -->
+                <p>Genre</p>
+                <input type="text" id="addListGenre" class="form-control mb-4" name="genre">
+                
+                <!-- Language -->
+                <p>Language</p>
+                <input type="text" id="addListLanguage" class="form-control mb-4" name="language">
+                
+                <!-- Author Name -->
+                <p>Author Name</p>
+                <input type="text" id="addListAuthor" class="form-control mb-4" name="author">
+                
+                <!-- Publisher Name -->
+                <p>Publisher Name</p>
+                <input type="text" id="addListPublisher" class="form-control mb-4" name="publisher">
+                
+                <!-- Price -->
+                <p>Price</p>
+                <input type="number" id="addListPrice" class="form-control mb-4" name="price">
+                
+                <!-- Sell/Lend -->
+                <input type="radio" id="addListSellLend" class="" name="status" value="lend">Lend<br>
+                <input type="radio" id="addListSellLend" class="" name="status" value="sell">Sell
+                
                 <!-- Submit button -->
                 <button class="btn btn-info my-4 btn-block" type="submit">Create Listing</button>
                 <hr>
