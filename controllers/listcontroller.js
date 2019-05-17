@@ -12,7 +12,6 @@ exports.listbooks = function(req,res){
    
   
       console.log(books);
-      console.log(books[0].get());
       res.render('profile',{
       user: req.user,
       book: books
