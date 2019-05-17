@@ -24,40 +24,37 @@
 
                 <p class="h2 mb-4">Add New book Sell Listing</p>
 
-                <!-- User Name -->
-                <h3 class ="mb-3"><%= user.name %></h3>
-
                 <!-- ISBN -->
                 <p>ISBN</p>
-                <input type="text" id="addListISBN" class="form-control mb-4" name="ISBN">
+                <input type="text" id="addListISBN" class="form-control mb-4" name="ISBN" required>
                 
                 <!-- Name -->
                 <p>Book Title</p>
-                <input type="text" id="addListTitle" class="form-control mb-4" name="title">
+                <input type="text" id="addListTitle" class="form-control mb-4" name="title" required>
 
                 <!-- Genre -->
                 <p>Genre</p>
-                <input type="text" id="addListGenre" class="form-control mb-4" name="genre">
+                <input type="text" id="addListGenre" class="form-control mb-4" name="genre" required>
                 
                 <!-- Language -->
                 <p>Language</p>
-                <input type="text" id="addListLanguage" class="form-control mb-4" name="language">
+                <input type="text" id="addListLanguage" class="form-control mb-4" name="language" required>
                 
                 <!-- Author Name -->
                 <p>Author Name</p>
-                <input type="text" id="addListAuthor" class="form-control mb-4" name="author">
+                <input type="text" id="addListAuthor" class="form-control mb-4" name="author" required>
                 
                 <!-- Publisher Name -->
                 <p>Publisher Name</p>
-                <input type="text" id="addListPublisher" class="form-control mb-4" name="publisher">
+                <input type="text" id="addListPublisher" class="form-control mb-4" name="publisher" required>
                 
                 <!-- Price -->
                 <p>Price</p>
-                <input type="number" id="addListPrice" class="form-control mb-4" name="price">
+                <input type="number" id="addListPrice" class="form-control mb-4" name="price" min='0' required>
                 
                 <!-- Sell/Lend -->
-                <input type="radio" id="addListSellLend" class="" name="status" value="lend">Lend<br>
-                <input type="radio" id="addListSellLend" class="" name="status" value="sell">Sell
+                <input type="radio" id="addListSellLend" class="" name="status" value="lend" required>Lend<br>
+                <input type="radio" id="addListSellLend" class="" name="status" value="sell" required>Sell
                 
                 <!-- Submit button -->
                 <button class="btn btn-info my-4 btn-block" type="submit">Create Listing</button>
