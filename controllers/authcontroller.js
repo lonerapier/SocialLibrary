@@ -1,5 +1,6 @@
 var passport = require('passport');
 var models = require('../models');
+
 var exports = module.exports = {}
 
 exports.getSignup = function(req, res) {
@@ -14,7 +15,9 @@ exports.postSignup = function(req, res) {
 };
 
 exports.getSignin = function(req, res) {
-    res.render('signin');
+    res.render('signin', {
+        message: req.flash('loginMessage')[0],
+    });
 };
 
 exports.postSignin = function(req, res) {
@@ -25,7 +28,6 @@ exports.postSignin = function(req, res) {
 };
 
 exports.updateProfile = function(req, res) {
-
     console.log(req.user.id);
     var data = {
         email:      req.body.email,

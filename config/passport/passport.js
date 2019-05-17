@@ -71,23 +71,19 @@ module.exports = function(passport, user) {
                 }
             }).then(function(user) {
                 if (!user) {
-                    return done(null, false, {
-                        message: 'Email does not exist'
-                    });
+                    return done(null, false, req.flash('loginMessage', 'Email does not exist'));
 
                 }
                 if (!isValidPassword(user.password, password)) {
-                    return done(null, false, {
-                        message: 'Incorrect password.'
-                    });
+                    return done(null, false, req.flash('loginMessage', 'Incorrect password.'
+                    ));
                 }
                 var userinfo = user.get();
                 return done(null, userinfo);
             }).catch(function(err) {
                 console.log("Error:", err);
-                return done(null, false, {
-                    message: 'Something went wrong with your Signin'
-                });
+                return done(null, false, req.flash('loginMessage', 'Something went wrong with your Signin'
+                ));
             });
         }
     ));

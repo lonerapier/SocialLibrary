@@ -5,8 +5,8 @@ var session    = require('express-session');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
+var flash = require('connect-flash');
 var env = require('dotenv').config();
-var exphbs = require('express-handlebars');
 // This will be our application entry. We'll setup our server here.
 const http = require('http');
 // Set up the express app
@@ -18,7 +18,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
-
+app.use(flash());
 // For Passport
 app.use(session({ secret: 'keyboard cat',resave: true, saveUninitialized:true})); // session secret
 app.use(passport.initialize());

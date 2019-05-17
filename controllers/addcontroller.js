@@ -2,7 +2,7 @@ var models = require('../models');
 
 exports.addBooks = function(req,res){
     console.log(req.body);
-    
+
     var authorid,publisherid,bookid;
 
     models.author.findOrCreate({where: {name: req.body.author}})
@@ -13,7 +13,7 @@ exports.addBooks = function(req,res){
         console.log(created);
         authorid = user.get({plain: true}).id;
         console.log(authorid);
-    
+
         models.publisher.findOrCreate({where: {name: req.body.publisher}})
         .then(([user, created]) => {
             console.log(user.get({
@@ -58,7 +58,7 @@ exports.addBooks = function(req,res){
         })
 
     })
-    
+
     res.render('dashboard',{
         user:req.user
     });
