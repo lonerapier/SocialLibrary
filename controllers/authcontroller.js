@@ -7,12 +7,12 @@ exports.getSignup = function(req, res) {
     res.render('signup');
 };
 
-exports.postSignup = function(req, res) {
-    passport.authenticate('local-signup', {
-        successRedirect: '/dashboard',
-        failureRedirect: '/signup'
-    })(req,res);
-};
+// exports.postSignup = function(req, res) {
+//     passport.authenticate('local-signup', {
+//         successRedirect: '/dashboard',
+//         failureRedirect: '/signup'
+//     })(req,res);
+// };
 
 exports.getSignin = function(req, res) {
     res.render('signin', {
@@ -20,12 +20,22 @@ exports.getSignin = function(req, res) {
     });
 };
 
-exports.postSignin = function(req, res) {
-    passport.authenticate('local-signin', {
-        successRedirect: '/dashboard',
-        failureRedirect: '/signin'
-    })(req,res);
-};
+// exports.postSignin = function(req, res) {
+//     passport.authenticate('local-signin', {
+//         successRedirect: '/dashboard',
+//         failureRedirect: '/signin'
+//     })(req,res);
+// };
+
+// exports.postSignin = function(req, res) {
+//     passport.authenticate('local-signin', {
+//         failureRedirect: '/signin',
+//         failureFlash: true
+//     })
+//     console.log('aaaaaaaaaaaaaaaaaaaa');
+//     console.log(req.user);
+//     res.render('dashboard', {user: req.user});
+// };
 
 exports.updateProfile = function(req, res) {
     console.log(req.user.id);
@@ -68,13 +78,10 @@ exports.updateProfile = function(req, res) {
             console.log(err);
             request.server.log(['error'], err.stack);
     })
-    // res.render('dashboard',{
-    //     user:req.user
-    // });
 };
 
 exports.dashboard = function(req, res) {
-    res.render('dashboard');
+    res.render('dashboard', {user: req.user});
 };
 
 exports.logout = function(req, res) {

@@ -36,11 +36,11 @@ server.listen(port, () => {
     console.log("Listening on port " + port);
 });
 
-app.get("*", (req, res, next) => {
-    res.locals.user = req.user || null;
-    console.log("User: " + res.locals.user);
-    next();
-});
+// app.get("*", (req, res, next) => {
+//     res.locals.user = req.user || null;
+//     console.log("User: " + res.locals.user);
+//     next();
+// });
 
 app.set('views', './views')
 
