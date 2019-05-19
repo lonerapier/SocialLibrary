@@ -3,7 +3,8 @@ var passport = require('passport');
 
 var authController = require('../controllers/authcontroller');
 var addController = require('../controllers/addcontroller');
-var listController = require('../controllers/listcontroller');
+var profileController = require('../controllers/profilecontroller');
+
 
 var router = express.Router();
 
@@ -33,15 +34,17 @@ var router = express.Router();
 
     router.get('/logout',authController.logout);
 
-    router.get('/profile',listController.listbooks);
+    router.get('/profile',profileController.listbooks);
+    
+    router.get('/profile/:id',profileController.removebook);
 
     router.get('/addbooks', function(req, res) {
         res.render('addbooks', {user: req.user});
     });
 
-    router.get('/profile', function(req, res) {
-        res.render('profile', {user: req.user});
-    });
+    //router.get('/profile', function(req, res) {
+      //  res.render('profile', {user: req.user});
+    //});
 
     router.get('/update', function(req, res) {
         res.render('update', {user: req.user});

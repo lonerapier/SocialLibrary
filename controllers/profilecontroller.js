@@ -21,5 +21,15 @@ exports.listbooks = function(req,res){
 	
 }
 
+exports.removebook = function(req, res){
+   
+   
+    models.owned.destroy({ where : {id: req.params.id}}).then(() => {
+   
+       res.redirect('/profile');
+    })
+  
+}
+
 
 
