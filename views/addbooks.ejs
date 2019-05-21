@@ -20,14 +20,17 @@
     <% include partials/header %>
     <div class="container">
         <% if (locals.user) { %>
-            <form class="text border border-light p-5" method="post" action="/addbooks">
+            <form id="addListForm" class="text border border-light p-5" method="post" action="/addbooks">
 
                 <p class="h2 mb-4">Add New book Sell Listing</p>
 
                 <!-- ISBN -->
                 <p>ISBN</p>
-                <input type="text" id="addListISBN" class="form-control mb-4" name="ISBN" required>
-                
+                <input list="ISBN" id="addListISBN" class="form-control mb-4" name="ISBN" required oninput="getList()" onchange="getIsbn()">
+                <datalist id="ISBN">
+                    <option>abc</option>
+                </datalist>
+
                 <!-- Name -->
                 <p>Book Title</p>
                 <input type="text" id="addListTitle" class="form-control mb-4" name="title" required>
@@ -69,5 +72,71 @@
         <% } %>
     </div>
     <% include partials/footer %>
+    <script>
+        function getList() {
+            document.getElementById("addListTitle").value='';
+            document.getElementById("addListGenre").value='';
+            document.getElementById("addListLanguage").value='';
+            document.getElementById("addListAuthor").value='';
+            document.getElementById("addListPublisher").value='';
+            document.getElementById("addListTitle").readOnly = false;
+            document.getElementById("addListGenre").readOnly = false;
+            document.getElementById("addListLanguage").readOnly = false;
+            document.getElementById("addListAuthor").readOnly = false;
+            document.getElementById("addListPublisher").readOnly = false;
+            var isbnval = document.getElementById("addListISBN").value;
+            var xmlhttp = new XMLHttpRequest();
+            var url = 'lookupISBN';
+            var params = 'isbn='+isbnval;
+            xmlhttp.open('POST', url, true);
+		    xmlhttp.onreadystatechange = function() {
+			    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    createList(xmlhttp);
+                }
+			}
+            xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
+            xmlhttp.send(params);
+
+            function createList(xmlhttp){
+                var dataisbn = JSON.parse(xmlhttp.responseText);
+                var list = "";
+                var i;
+                for(i = 0;i < dataisbn.length;i++) {
+                    list += '<option>' + dataisbn[i].ISBN + '</option>';
+                }
+                document.getElementById("ISBN").innerHTML=list;
+            }
+        }
+        function getIsbn() {
+            var isbnval = document.getElementById("addListISBN").value;
+            var xmlhttp = new XMLHttpRequest();
+            var url = 'lookupdata';
+            var params = 'isbn='+isbnval;
+            xmlhttp.open('POST', url, true);
+		    xmlhttp.onreadystatechange = function() {
+			    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    createList(xmlhttp);
+                }
+			}
+            xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
+            xmlhttp.send(params);
+
+            function createList(xmlhttp){
+                var dataisbn = JSON.parse(xmlhttp.responseText);
+                if(dataisbn.length>0){
+                    document.getElementById("addListTitle").value=dataisbn[0].title;
+                    document.getElementById("addListGenre").value=dataisbn[0].genre;
+                    document.getElementById("addListLanguage").value=dataisbn[0].language;
+                    document.getElementById("addListAuthor").value=dataisbn[0].author.name;
+                    document.getElementById("addListPublisher").value=dataisbn[0].publisher.name;
+                    document.getElementById("addListTitle").readOnly = true;
+                    document.getElementById("addListGenre").readOnly = true;
+                    document.getElementById("addListLanguage").readOnly = true;
+                    document.getElementById("addListAuthor").readOnly = true;
+                    document.getElementById("addListPublisher").readOnly = true;
+                }    
+            }
+        }
+    </script>
 </body>
 </html>

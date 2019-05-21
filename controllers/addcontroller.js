@@ -1,6 +1,9 @@
 var models = require('../models');
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 
 exports.addBooks = function(req,res){
+    console.log("Add Books");
     console.log(req.body);
 
     var authorid,publisherid,bookid;
@@ -61,5 +64,48 @@ exports.addBooks = function(req,res){
 
     res.render('dashboard',{
         user:req.user
+    });
+}
+
+exports.lookup = function(req,res){
+    console.log("Lookup");
+    var isbn = req.body.isbn;
+    models.book.findAll({ 
+        attributes: ['ISBN'],
+        where: {
+            ISBN: {
+                [Op.like]: isbn+'%'
+            }},
+        limit: 5 
+    }).then(books => {
+        console.log(books);
+        res.status(200);
+        return res.json(books);
+    }).catch(error => {
+        console.log("The Force is not with you!");
+        console.log(error);
+        res.status(500).end();
+    });
+}
+
+exports.getData = function(req,res){
+    console.log("Get Data");
+    var isbn = req.body.isbn;
+    models.book.findAll({ 
+        where:{ 
+            ISBN: isbn,
+        },
+        include: [{ 
+            all: true, 
+            nested: true 
+        }] 
+    }).then(books => {
+        console.log(books);
+        res.status(200);
+        return res.json(books);
+    }).catch(error => {
+        console.log("The Force is not with you!");
+        console.log(error);
+        res.status(500).end();
     });
 }

@@ -54,6 +54,10 @@ var router = express.Router();
 
     router.post('/addbooks', addController.addBooks);
 
+    router.post('/lookupISBN',addController.lookup);
+
+    router.post('/lookupdata',addController.getData);
+
     function isLoggedIn(req, res, next) {
         if (req.isAuthenticated())
             return next();
