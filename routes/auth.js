@@ -4,6 +4,7 @@ var passport = require('passport');
 var authController = require('../controllers/authcontroller');
 var addController = require('../controllers/addcontroller');
 var profileController = require('../controllers/profilecontroller');
+var marketController = require('../controllers/marketcontroller');
 
 
 var router = express.Router();
@@ -35,6 +36,8 @@ var router = express.Router();
     router.get('/logout',authController.logout);
 
     router.get('/profile',profileController.listbooks);
+
+    router.get('/market',marketController.listallbooks);
     
     router.get('/profile/:id',profileController.removebook);
 

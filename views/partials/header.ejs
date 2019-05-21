@@ -11,9 +11,18 @@
       <li class="nav-item active" id="1">
         <a class="nav-link" href="/dashboard">Home
           <span class="sr-only">(current)</span>
-        </a>
+        </a></li>
       <li class="nav-item active" id="2">
-        <a class="nav-link" href="/addbooks">Add Books</a>
+        <a class="nav-link" href="/addbooks">Add Books</a></li>
+        
+            <% if (locals.user) { %>
+              <li class="nav-item active" id="3">
+                  <a class="nav-link" href="/market">Browse Market</a>
+                </li>
+          <% } else { %>
+            
+          <% } %>
+          
     </ul>
     <ul class="navbar-nav ml-auto nav-flex-icons">
       <li class="nav-item dropdown">
