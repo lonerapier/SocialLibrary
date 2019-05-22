@@ -4,7 +4,7 @@ const Op = Sequelize.Op;
 
 exports.listallbooks = function(req,res){
 	console.log(req.body);
-
+    if(req.user)
     models.book.findAll({ include:[{
     	model: models.owned,
     	as : "owned by",
@@ -20,5 +20,23 @@ exports.listallbooks = function(req,res){
       });  
 
     })
+
+    else
+    models.book.findAll({ include:[{
+    	model: models.owned,
+    	as : "owned by",
+        where : {bookId: { [Op.ne]: "NULL" }}
+    }] 
+     }).then(books => {
+   
+  
+      console.log(books);
+      res.render('market',{
+     // user: req.user,
+      book: books
+      });  
+
+    })
+
 	
 }
