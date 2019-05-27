@@ -6,6 +6,9 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var flash = require('connect-flash');
+var async = require('async');
+var nodemailer = require('nodemailer');
+var crypto = require('crypto');
 var env = require('dotenv').config();
 // This will be our application entry. We'll setup our server here.
 const http = require('http');

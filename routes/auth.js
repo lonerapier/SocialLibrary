@@ -37,8 +37,6 @@ var router = express.Router();
 
     router.get('/profile',profileController.listbooks);
 
-    router.get('/market',marketController.listallbooks);
-    
     router.get('/profile/:id',profileController.removebook);
 
     router.get('/addbooks', function(req, res) {
@@ -60,6 +58,14 @@ var router = express.Router();
     router.post('/lookupISBN',addController.lookup);
 
     router.post('/lookupdata',addController.getData);
+
+    router.get('/forgot', authController.getForgot);
+
+    router.post('/forgot', authController.postForgot);
+
+    router.get('/reset/:token', authController.getReset);
+
+    router.post('/reset/:token', authController.postReset);
 
     function isLoggedIn(req, res, next) {
         if (req.isAuthenticated())

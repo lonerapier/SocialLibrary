@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> SocialLibrary | Reset Password</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/css/sheet.css">
+    <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="/css/mdb.min.css" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="/css/market.css" rel="stylesheet">
+    <style>
+        .alert {
+          padding: 15px;
+          background-color: #f44336;
+          color: white;
+          opacity: 1;
+        transition: opacity 0.6s; /* 600ms to fade out */
+        }
+
+        .closebtn {
+          margin-left: 15px;
+          color: white;
+          font-weight: bold;
+          float: right;
+          font-size: 22px;
+          line-height: 15px;
+          cursor: pointer;
+          transition: 0.3s;
+        }
+
+        .closebtn:hover {
+          color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <% include partials/header %>
+        <h1>Password Reset</h1>
+        <form class="text-center border border-light p-3" method="post" action="/reset/<%= user.resetPasswordToken %>">
+
+            <input type="password" class="form-control mb-4" placeholder="Password" name="password" id="password" required>
+
+            <input type="password" class="form-control mb-4" name="confpassword" id="confpassword" placeholder="Confirm the password">
+
+            <span class="error"></span>
+
+            <button class="btn btn-info my-4 btn-block" type="submit">Reset Password</button>
+        </form>
+    <% include partials/footer %>
+</body>
+<script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+
+<script>
+    var allowsubmit = false;
+    $(function(){
+        //on keypress
+        $('#confpassword').keyup(function(e){
+            //get values
+            var pass = $('#password').val();
+            var confpass = $('#confpassword').val();
+
+            //check the strings
+            if(pass == confpass){
+                //if both are same remove the error and allow to submit
+                $('.error').text('');
+                allowsubmit = true;
+            }else{
+                //if not matching show error and not allow to submit
+                $('.error').text('Password not matching');
+                allowsubmit = false;
+            }
+        });
+
+        //jquery form submit
+        $('#signup').submit(function(){
+
+            var pass = $('#password').val();
+            var confpass = $('#confpassword').val();
+
+            //just to make sure once again during submit
+            //if both are true then only allow submit
+            if(pass == confpass){
+                allowsubmit = true;
+            }
+            if(allowsubmit){
+                return true;
+            }else{
+                return false;
+            }
+        });
+    });
+</script>
+</html>
