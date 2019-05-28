@@ -18,8 +18,11 @@ module.exports = (sequelize, DataTypes) => {
       onDelete: 'CASCADE',
     });
     owned.belongsTo(models.book, {
-        foreignKey: 'bookId',
-        onDelete: 'CASCADE',
+      foreignKey: 'bookId',
+      onDelete: 'CASCADE',
+    });
+    owned.hasMany(models.request, {
+      foreignKey: 'bookId',
     });
   };
   return owned;
