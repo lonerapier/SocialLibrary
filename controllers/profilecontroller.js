@@ -31,5 +31,33 @@ exports.removebook = function(req, res){
 
 }
 
+exports.editbook = function(req, res) {
+    console.log(req.body);
+    var data = {
+        id:      req.body.id,
+        price:  req.body.price,
+        status:   req.body.status,
+    
+      };
+      models.owned.update({
+        id:      req.body.id,
+        price:  req.body.price,
+        status:   req.body.status,
+      },
+        {where: {id:req.body.id}})
+        .then(function (result) {
+            console.log('the data saved!');
+            res.redirect('/profile');
+        })
+        .catch(function (err) {
+            console.log("uh oh something wasn't right!");
+            console.log(err);
+            request.server.log(['error'], err.stack);
+    })
+
+      
+    
+};
+
 
 

@@ -38,6 +38,8 @@ var router = express.Router();
 
     router.get('/profile',profileController.listbooks);
 
+    router.post('/profile',profileController.editbook);
+
     router.get('/profile/:id',profileController.removebook);
 
     router.get('/market',marketController.listallbooks);
