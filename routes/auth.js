@@ -76,6 +76,24 @@ var router = express.Router();
 
     router.get('/book/:ISBN', bookController.getBook);
 
+    router.post('/getsentrequest', addController.sentrequest);
+
+    router.post('/getrecrequest', addController.recrequest);
+
+    router.get('/receive/:id',addController.receive);
+
+    router.get('/accept/:id',addController.accept);
+
+    router.get('/reject/:id',addController.reject);
+
+    router.get('/request/:id',addController.request);
+
+    router.get('/return/:id',addController.return);
+
+    router.post('/getbbooks', addController.bbooks);
+
+    router.post('/getlbooks', addController.lbooks);
+
     function isLoggedIn(req, res, next) {
         if (req.isAuthenticated())
             return next();

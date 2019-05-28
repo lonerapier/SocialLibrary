@@ -1,0 +1,69 @@
+* {box-sizing: border-box}
+
+/* Style the tab */
+.tab {
+  float: left;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+  width: 15%;
+  /* height: 100vh; */
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+  display: block;
+  background-color: inherit;
+  color: black;
+  padding: 22px 16px;
+  width: 100%;
+  border: none;
+  outline: none;
+  text-align: left;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current "tab button" class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  float: left;
+  background-color: inherit;
+  padding: 0px 12px;
+  border: 1px solid #ccc;
+  width: 85%;
+  border-left: none;
+  /* height: 100vh; */
+}
+
+.post-container {
+    margin: 20px 20px 0 0;
+    overflow: auto
+}
+.post-thumb {
+    float: left
+}
+.post-thumb img {
+    display: block;
+    height: 200px;
+    width: 200px
+}
+.post-content {
+    margin-left: 250px
+}
+.post-title {
+    font-weight: bold;
+    font-size: 200%
+}
+
+.body {
+    background-color: red;
+}

@@ -13,15 +13,285 @@
     <!-- Material Design Bootstrap -->
     <link href="css/mdb.min.css" rel="stylesheet">
     <!-- Your custom styles (optional) -->
-    <link href="css/market.css" rel="stylesheet">
+    <link href="css/dashboard.css" rel="stylesheet">
+    
 </head>
 
 <body>
     <% include partials/header %>
-        <% if (locals.user) { %>
-            <h1>ABC</h1>
-            <h1><%= user.email %></h1>
-        <% } %>
+    <div style="overflow:hidden; display: block; position:relative; background-color: inherit;">
+    <div class="tab">
+        <button id="defaultOpen" class="tablinks" onclick="list(event, 'sentRequests')">Sent Requests</button>
+        <button class="tablinks" onclick="list(event, 'recRequests')">Received Requests</button>
+        <button class="tablinks" onclick="list(event, 'borrowBooks')">Borrowed Books</button>
+        <button class="tablinks" onclick="list(event, 'lentBooks')">Lent Books</button>
+        
+    </div>
+        <div id="lentBooks" class="tabcontent">
+        </div>
+        
+        <div id="borrowBooks" class="tabcontent">
+        </div>
+        
+      <div id="recRequests" class="tabcontent">
+      </div>
+      
+        <div id="sentRequests" class="tabcontent">
+            <div class="htab">
+                    <button id="htabdefault" class="htablinks" onclick="getSent(event, 'accept')">Accepted</button>
+                    <button class="htablinks" onclick="getSent(event, 'onhold')">On Hold</button>
+                    <button class="htablinks" onclick="getSent(event, 'reject')">Rejected</button>
+            </div>
+            <div id="data" class="">
+            </div>
+        </div>
+      <script>
+        function list(evt, tabName) {
+          var i, tabcontent, tablinks;
+          tabcontent = document.getElementsByClassName("tabcontent");
+          for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+          }
+          tablinks = document.getElementsByClassName("tablinks");
+          for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+          }
+          evt.currentTarget.className += " active";
+          if(tabName=="sentRequests"){
+            document.getElementById("htabdefault").click();
+          }
+          else if(tabName=="recRequests"){
+            getRec(evt);
+          }
+          else if(tabName=="borrowBooks"){
+            getBBooks(evt);
+          }
+          else if(tabName=="lentBooks"){
+            getLBooks(evt);
+          }
+          document.getElementById(tabName).style.display = "block";
+        }
+
+        function getSent(evt, status) {
+            var id = <%= user.id %>;
+            var xmlhttp = new XMLHttpRequest();
+            var url = 'getsentrequest';
+            var params = 'id='+id+'&status='+status;
+            xmlhttp.open('POST', url, true);
+		    xmlhttp.onreadystatechange = function() {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    if(status=='accept'){
+                        acceptList(xmlhttp);
+                    }
+                    else {
+                        requestList(xmlhttp);
+                    }
+                }
+			}
+            xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
+            xmlhttp.send(params);
+
+            function requestList(xmlhttp){
+                var dat="";
+                var requestdata = JSON.parse(xmlhttp.responseText);
+                for(i = 0;i<requestdata.length;++i){
+                    dat+= "<div><hr><div id=\"requests\">";
+                    dat+="<p><span id=\"Title\">Title : ";
+                    dat+=requestdata[i].owned.book.title;
+                    dat+="</span></p><p><span id=\"Owner\">Owner : ";
+                    dat+=requestdata[i].owned.user.firstname;
+                    dat+=" ";
+                    dat+=requestdata[i].owned.user.lastname;
+                    dat+="</span></p><p><span id=\"Owner\">Status : ";
+                    dat+=requestdata[i].status;
+                    dat+="</span></p>";
+                    dat+="</div></div>";
+                }
+                document.getElementById("data").innerHTML = dat;
+            }
+
+            function acceptList(xmlhttp){
+                var dat="";
+                var requestdata = JSON.parse(xmlhttp.responseText);
+                for(i = 0;i<requestdata.length;++i){
+                    dat+= "<div><hr><div id=\"requests\">";
+                    dat+="<p><span id=\"Title\">Title : ";
+                    dat+=requestdata[i].owned.book.title;
+                    dat+="</span></p><p><span id=\"Owner\">Owner : ";
+                    dat+=requestdata[i].owned.user.firstname;
+                    dat+=" ";
+                    dat+=requestdata[i].owned.user.lastname;
+                    dat+="</span></p><p><span id=\"Owner\">Status : ";
+                    dat+=requestdata[i].status;
+                    dat+="</span></p><p><span id=\"Email\">Email : ";
+                    dat+=requestdata[i].owned.user.email;
+                    dat+="</span></p><p><span id=\"Phone\">Phone : ";
+                    dat+=requestdata[i].owned.user.phone;
+                    dat+="</span></p>";
+                    dat+="<a href=\"/receive/";
+                    dat+=requestdata[i].id;
+                    dat+="\"><button>Received Book</button></a>";
+                    dat+="</div></div>";
+                }
+                document.getElementById("data").innerHTML = dat;
+            }
+        }
+        function getRec(evt){
+            var id = <%= user.id %>;
+            var xmlhttp = new XMLHttpRequest();
+            var url = 'getrecrequest';
+            var params = 'id='+id;
+            xmlhttp.open('POST', url, true);
+		    xmlhttp.onreadystatechange = function() {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    recRequestList(xmlhttp);
+                }
+			}
+            xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
+            xmlhttp.send(params);
+
+            function recRequestList(xmlhttp){
+                var dat="";
+                var requestdata = JSON.parse(xmlhttp.responseText);
+                for(i = 0;i<requestdata.length;++i){
+                    dat+= "<div><hr><div id=\"requests\">";
+                    dat+="<p><span id=\"Title\">Title : ";
+                    dat+=requestdata[i].owned.book.title;
+                    dat+="</span></p><p><span id=\"Borrower\">Borrower : ";
+                    dat+=requestdata[i].user.firstname;
+                    dat+=" ";
+                    dat+=requestdata[i].user.lastname;
+                    dat+="</span></p>";
+                    dat+="<a href=\"/accept/";
+                    dat+=requestdata[i].id;
+                    dat+="\"><button>Accept</button></a>";
+                    dat+="<a href=\"/reject/";
+                    dat+=requestdata[i].id;
+                    dat+="\"><button>Reject</button></a>";
+                    dat+="</div></div>";
+                }
+                document.getElementById("recRequests").innerHTML = dat;
+            }
+        }
+
+        function getBBooks(evt){
+            var id = <%= user.id %>;
+            var xmlhttp = new XMLHttpRequest();
+            var url = 'getbbooks';
+            var params = 'id='+id;
+            xmlhttp.open('POST', url, true);
+		    xmlhttp.onreadystatechange = function() {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    borrowedBookList(xmlhttp);
+                }
+			}
+            xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
+            xmlhttp.send(params);
+
+            function borrowedBookList(xmlhttp){
+                var dat="";
+                var requestdata = JSON.parse(xmlhttp.responseText);
+                for(i = 0;i<requestdata.length;++i){
+                    dat+= "<div><hr><div id=\"requests\">";
+                    dat+="<p><span id=\"Title\">Title : ";
+                    dat+=requestdata[i].owned.book.title;
+                    dat+="</span></p><p><span id=\"Owner\">Owner : ";
+                    dat+=requestdata[i].owned.user.firstname;
+                    dat+=" ";
+                    dat+=requestdata[i].owned.user.lastname;
+                    dat+="</span></p><p><span id=\"Return Date\">Return Date : ";
+                    dat+=requestdata[i].returndate;
+                    dat+="</span></p>";
+                    // dat+="<a href=\"/accept/";
+                    // dat+=requestdata[i].id;
+                    // dat+="\"><button>Accept</button></a>";
+                    // dat+="<a href=\"/reject/";
+                    // dat+=requestdata[i].id;
+                    // dat+="\"><button>Reject</button></a>";
+                    dat+="</div></div>";
+                }
+                document.getElementById("borrowBooks").innerHTML = dat;
+            }
+        }
+
+        function getBBooks(evt){
+            var id = <%= user.id %>;
+            var xmlhttp = new XMLHttpRequest();
+            var url = 'getbbooks';
+            var params = 'id='+id;
+            xmlhttp.open('POST', url, true);
+		    xmlhttp.onreadystatechange = function() {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    borrowedBookList(xmlhttp);
+                }
+			}
+            xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
+            xmlhttp.send(params);
+
+            function borrowedBookList(xmlhttp){
+                var dat="";
+                var requestdata = JSON.parse(xmlhttp.responseText);
+                for(i = 0;i<requestdata.length;++i){
+                    dat+= "<div><hr><div id=\"requests\">";
+                    dat+="<p><span id=\"Title\">Title : ";
+                    dat+=requestdata[i].owned.book.title;
+                    dat+="</span></p><p><span id=\"Owner\">Owner : ";
+                    dat+=requestdata[i].owned.user.firstname;
+                    dat+=" ";
+                    dat+=requestdata[i].owned.user.lastname;
+                    dat+="</span></p><p><span id=\"Return Date\">Return Date : ";
+                    dat+=requestdata[i].returndate;
+                    dat+="</span></p>";
+                    dat+="</div></div>";
+                }
+                document.getElementById("borrowBooks").innerHTML = dat;
+            }
+        }
+        
+        function getLBooks(evt){
+            var id = <%= user.id %>;
+            var xmlhttp = new XMLHttpRequest();
+            var url = 'getlbooks';
+            var params = 'id='+id;
+            xmlhttp.open('POST', url, true);
+		    xmlhttp.onreadystatechange = function() {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    lentBookList(xmlhttp);
+                }
+			}
+            xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
+            xmlhttp.send(params);
+
+            function lentBookList(xmlhttp){
+                var dat="";
+                var requestdata = JSON.parse(xmlhttp.responseText);
+                for(i = 0;i<requestdata.length;++i){
+                    dat+= "<div><hr><div id=\"requests\">";
+                    dat+="<p><span id=\"Title\">Title : ";
+                    dat+=requestdata[i].owned.book.title;
+                    dat+="</span></p><p><span id=\"Borrower\">Borrower : ";
+                    dat+=requestdata[i].user.firstname;
+                    dat+=" ";
+                    dat+=requestdata[i].user.lastname;
+                    dat+="</span></p><p><span id=\"Email\">Email : ";
+                    dat+=requestdata[i].user.email;
+                    dat+="</span></p><p><span id=\"Phone\">Phone : ";
+                    dat+=requestdata[i].user.phone;
+                    dat+="</span></p><p><span id=\"Return Date\">Return Date : ";
+                    dat+=requestdata[i].returndate;
+                    dat+="</span></p>";
+                    dat+="<a href=\"/return/";
+                    dat+=requestdata[i].id;
+                    dat+="\"><button>Book Returned</button></a>";
+                    dat+="</div></div>";
+                }
+                document.getElementById("lentBooks").innerHTML = dat;
+            }
+        }
+        // Get the element with id="defaultOpen" and click on it
+        document.getElementById("defaultOpen").click();
+        </script>
+    </div>
     <% include partials/footer %>
 </body>
 </html>
