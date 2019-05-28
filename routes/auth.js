@@ -5,7 +5,8 @@ var authController = require('../controllers/authcontroller');
 var addController = require('../controllers/addcontroller');
 var profileController = require('../controllers/profilecontroller');
 var marketController = require('../controllers/marketcontroller');
-
+var searchController = require('../controllers/searchcontroller');
+var bookController = require('../controllers/bookcontroller');
 
 var router = express.Router();
 
@@ -39,6 +40,8 @@ var router = express.Router();
 
     router.get('/profile/:id',profileController.removebook);
 
+    router.get('/market',marketController.listallbooks);
+
     router.get('/addbooks', function(req, res) {
         res.render('addbooks', {user: req.user});
     });
@@ -66,6 +69,12 @@ var router = express.Router();
     router.get('/reset/:token', authController.getReset);
 
     router.post('/reset/:token', authController.postReset);
+
+    router.get('/search', searchController.getSearch);
+
+    router.post('/search', searchController.postSearch);
+
+    router.get('/book/:ISBN', bookController.getBook);
 
     function isLoggedIn(req, res, next) {
         if (req.isAuthenticated())

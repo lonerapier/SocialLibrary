@@ -19,23 +19,20 @@
 <body>
     <% include partials/header %>
     <div class="container">
+        <% include partials/searchbar %>
         <div class="col mb-1">
             <p id="market-head">
-                These books are currently available in the market. 
+                These books are currently available in the market.
             </p>
             <% for(var i = 0; i< book.length; i++) { %>
             <div class="post-container">
                 <hr>
-                
+
                 <div class="post-content" id="details">
-                    <p class="post-title"><span id="name"><%=book[i].title %></span></p>
+                    <p class="post-title"><a href="/book/<%= book[i].ISBN %>"><span id="name"><%=book[i].title %></span></a></p>
                     <p><span id="quantity">Genre : <%= book[i].genre %></span></p>
                     <p><span id="expiry">Language : <%= book[i].language %></span></p>
                     <p><span id="expiry1">For <%= book[i]["owned by"][0].status %> : <%= book[i]["owned by"][0].price %>/-</span></p>
-                    
-                        
-                    
-                    
                 </div>
             </div>
             <% } %>
@@ -43,4 +40,24 @@
     </div>
     <% include partials/footer %>
 </body>
+<script>
+$(document).ready(function() {
+    var city = null;
+
+    $.ajax({
+        type: 'GET',
+        url: 'search', // This one is missing here
+        dataType: 'json'
+    }).done(function(data){
+        city = JSON.stringify(data);
+        console.log(city);
+        var len = data.length;
+        for( var i = 0; i<len; i++){
+            var city = data[i];
+
+            $("#cities").append("<option value='"+city+"'>"+city+"</option>");
+        }
+    });
+});
+</script>
 </html>

@@ -70,13 +70,13 @@ exports.addBooks = function(req,res){
 exports.lookup = function(req,res){
     console.log("Lookup");
     var isbn = req.body.isbn;
-    models.book.findAll({ 
+    models.book.findAll({
         attributes: ['ISBN'],
         where: {
             ISBN: {
                 [Op.like]: isbn+'%'
             }},
-        limit: 5 
+        limit: 5
     }).then(books => {
         console.log(books);
         res.status(200);
@@ -91,14 +91,14 @@ exports.lookup = function(req,res){
 exports.getData = function(req,res){
     console.log("Get Data");
     var isbn = req.body.isbn;
-    models.book.findAll({ 
-        where:{ 
+    models.book.findAll({
+        where:{
             ISBN: isbn,
         },
-        include: [{ 
-            all: true, 
-            nested: true 
-        }] 
+        include: [{
+            all: true,
+            nested: true
+        }]
     }).then(books => {
         console.log(books);
         res.status(200);

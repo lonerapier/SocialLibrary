@@ -1,0 +1,25 @@
+<br>
+<h1 align="center" style="margin-bottom:-70px">Social Library</h1>
+<div class="input-group md-form form-sm form-2 pl-5"></div>
+<form class="text-center p-5" method="post" action="/search">
+        <input class="form-control my-0 py-1 amber-border" type="text" placeholder="Search" aria-label="Search" name="query">
+        <br>
+        <div class="search-fields" id="search-fields">
+            <select class="mdb-select" name="fields" id="fields">
+                <option value="Title" selected disabled>Select search field</option>
+                <option value="Title">By Title</option>
+                <option value="ISBN">By ISBN</option>
+                <option value="Genre">By Genre</option>
+                <option value="Author">By Author</option>
+                <option value="Publisher">By Publisher</option>
+            </select>
+        </div>
+        <div class="city" id="city">
+            <select class="mdb-select" name="cities" id="cities">
+            <option value="region" disabled selected>Select you region here</option>
+            <option value="All India">All India</option>
+
+            </select><br>
+    <button type="submit" class="btn btn-info my-4 ">Search</button>
+</form>
+</div>
