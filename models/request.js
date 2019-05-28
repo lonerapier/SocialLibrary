@@ -6,8 +6,8 @@ module.exports = (sequelize, DataTypes) => {
         defaultValue: 'onhold'
     },
     return: {
-        type: DataTypes.BOOLEAN,
-        defaultValue: false
+        type: DataTypes.ENUM('nothing', 'received', 'returned'),
+        defaultValue: 'nothing'
     },
     accepted: {
         type: DataTypes.DATE,
