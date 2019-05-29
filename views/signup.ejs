@@ -14,14 +14,36 @@
     <link href="css/mdb.min.css" rel="stylesheet">
     <!-- Your custom styles (optional) -->
     <link href="css/style.css" rel="stylesheet">
+    <style>
+        .login-form {
+        width: 500px;
+        margin: 30px auto;
+        }
+        .login-form form {
+            margin-bottom: 15px;
+            background: #f7f7f7;
+            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+            padding: 30px;
+        }
+        .login-form h2 {
+            margin: 0 0 15px;
+        }
+        .alert {
+            padding: 15px;
+            background-color: #f44336;
+            color: white;
+            opacity: 1;
+            transition: opacity 0.6s; /* 600ms to fade out */
+        }
+    </style>
 </head>
 
 <body>
-        <% include partials/header %>
+    <% include partials/header %>
     <!-- Default form register -->
-<form class="text-center border border-light p-5" id="signup" method="post" action="/signup">
+    <form class="login-form text-center border border-light p-4" id="signup" method="post" action="/signup">
 
-        <p class="h4 mb-4">Sign Up</p>
+        <p class="h2 mb-4">Sign Up</p>
 
         <!-- First Name -->
         <input type="name" id="defaultRegisterFormname" class="form-control mb-4" placeholder="First Name" name="firstname" required>
@@ -49,7 +71,7 @@
         <!-- City -->
         <input type="text" id="defaultRegisterFormCity" class="form-control mb-4" placeholder="City" name="city" required>
 
-        <span class="error"></span>
+        <strong><span class="error text-danger"></span></strong>
         <!-- Newsletter -->
         <!-- <div class="custom-control custom-checkbox">
             <input type="checkbox" class="custom-control-input" id="defaultRegisterFormNewsletter">
