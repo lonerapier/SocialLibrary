@@ -9,6 +9,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.ENUM('lend', 'sell'),
         allowNull: false,
     },
+    URL: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
   });
 
   owned.associate = function(models) {

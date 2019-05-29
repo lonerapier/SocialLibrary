@@ -69,12 +69,13 @@
                     </select>
                 </div>
                 <br><hr>
-                <div class = "usersOwned" id = "usersOwned"></div>
+                <div class = "usersOwned" tag = "usersOwned"></div>
             <span id="userCount"><%= book[0]["owned by"].length %></span> users currently are in possession of this book.
             <div id="loopStart">
             <% for(var i = 0; i< book[0]["owned by"].length; i++) { %></div>
+            <div class="userList" name = <%= book[0]["owned by"][i].user.city%>>
                 <div class="row">
-                    <a href="/request %>"><button class="float-right btn btn-info my-2" type="submit" id="requestButton">Send Request</button></a>
+                    <a href="/request/<%= book[0]["owned by"][i].id%>>"><button class="float-right btn btn-info my-2" type="submit" id="requestButton">Send Request</button></a>
                     <div id="nameCaption" class="col mb-1">
                         <label>Name</label>
                     </div>
@@ -98,7 +99,8 @@
                         <p><%= book[0]["owned by"][i].price %>/-</p>
                     </div>
                 </div>
-                <div id="loopEnd">
+            </div>    
+            <div id="loopEnd">
             <% } %></div>
         </div>
     </div>
@@ -133,31 +135,51 @@
         });
     });
 
-    window.onload = function changeusers() {
-        var xmlhttp = new XMLHttpRequest();
-        var url = 'city';
-        var isbn = <%= book[0].ISBN %>;
-        var userId = null;
-        <% if(locals.user) { %>
-        userId = <%= user.id %>;
-        <% } %>
-        var params = 'ISBN='+isbn+'&id='+userId;
-        console.log(params);
-        xmlhttp.open('POST', url, true);
-        xmlhttp.onreadystatechange = function() {
-            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                changeUsers(xmlhttp);
+    function changecity() {
+        if(document.getElementById("cities").value == "All India") {
+            userList = document.getElementsByClassName("userList");
+            for (i = 0; i < userList.length; i++) {
+                userList[i].style.display = "block";
             }
         }
-        xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
-        xmlhttp.send(params);
-
-        function changeUsers(xmlhttp){
-            var users = JSON.parse(xmlhttp.responseText);
-            console.log(users.length);
-
+        else {
+            userList = document.getElementsByClassName("userList");
+            for (i = 0; i < userList.length; i++) {
+                userList[i].style.display = "none";
+            }
+            city = document.getElementById("cities").value;
+            listdata = document.getElementsByName(city);
+            for (i = 0; i < listdata.length; i++) {
+                listdata[i].style.display = "block";
             }
         }
+    }
+
+    // window.onload = function changeusers() {
+    //     var xmlhttp = new XMLHttpRequest();
+    //     var url = 'city';
+    //     var isbn = <%= book[0].ISBN %>;
+    //     var userId = null;
+    //     <% if(locals.user) { %>
+    //     userId = <%= user.id %>;
+    //     <% } %>
+    //     var params = 'ISBN='+isbn+'&id='+userId;
+    //     console.log(params);
+    //     xmlhttp.open('POST', url, true);
+    //     xmlhttp.onreadystatechange = function() {
+    //         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+    //             changeUsers(xmlhttp);
+    //         }
+    //     }
+    //     xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
+    //     xmlhttp.send(params);
+
+    //     function changeUsers(xmlhttp){
+    //         var users = JSON.parse(xmlhttp.responseText);
+    //         console.log(users.length);
+
+    //         }
+    //     }
 
     </script>
 </html>

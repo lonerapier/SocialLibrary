@@ -45,6 +45,7 @@ exports.addBooks = function(req,res){
                 var owndata = {
                     price: req.body.price,
                     status: req.body.status,
+                    URL: req.body.URL,
                     bookId: bookid,
                     userId: req.user.id
                 }
