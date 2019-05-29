@@ -18,6 +18,7 @@
 
 <body>
     <% include partials/header %>
+
         <div class="post-container" id="profile-details">
             <div class="post-content" id="details">
                     <h1><p class="post-title"><span id="title"><%= book[0].title %></span></p></h1>
@@ -60,46 +61,103 @@
                 <div class="col mb-1">
                     <p><%= book[0].genre %></p>
                 </div>
-            </div>
-            <p><br><%= book[0]["owned by"].length %> users currently are in possession of this book</p>
-            <hr><br>
-            <% for(var i = 0; i< book[0]["owned by"].length; i++) { %>
-            <div class="row">
-                <a href="/request/<%= book[0]["owned by"][i].id%>"><button class="float-right btn btn-info my-2" type="submit">Send Request</button></a>
-                <div class="col mb-1">
-                    <label>Name</label>
+            </div><br>
+            <div class="city" id="city">
+                    <select class="mdb-select" name="cities" id="cities" onchange="changecity()">
+                    <option value="All India" selected>All India</option>
+
+                    </select>
                 </div>
-                <div class="col mb-1">
-                    <p><%= book[0]["owned by"][i]["user"].firstname %> <%= book[0]["owned by"][i]["user"].lastname %></p>
-                </div>
-            </div>
-            <div class="row">
-                    <div class="col mb-1">
-                        <label>Status</label>
+                <br><hr>
+                <div class = "usersOwned" id = "usersOwned"></div>
+            <span id="userCount"><%= book[0]["owned by"].length %></span> users currently are in possession of this book.
+            <div id="loopStart">
+            <% for(var i = 0; i< book[0]["owned by"].length; i++) { %></div>
+                <div class="row">
+                    <a href="/request %>"><button class="float-right btn btn-info my-2" type="submit" id="requestButton">Send Request</button></a>
+                    <div id="nameCaption" class="col mb-1">
+                        <label>Name</label>
                     </div>
                     <div class="col mb-1">
-                        <p>For <%= book[0]["owned by"][i].status %>/-</p>
+                        <p id="name"><%= book[0]["owned by"][i].user.firstname %> <%= book[0]["owned by"][i].user.lastname %></p>
                     </div>
                 </div>
-            <div class="row">
-                <div class="col mb-1">
-                    <label>Price</label>
+                <div class="row">
+                        <div class="col mb-1">
+                            <label>Status</label>
+                        </div>
+                        <div class="col mb-1">
+                            <p>For <%= book[0]["owned by"][i].status %>/-</p>
+                        </div>
+                    </div>
+                <div class="row">
+                    <div class="col mb-1">
+                        <label>Price</label>
+                    </div>
+                    <div class="col mb-1">
+                        <p><%= book[0]["owned by"][i].price %>/-</p>
+                    </div>
                 </div>
-                <div class="col mb-1">
-                    <p><%= book[0]["owned by"][i].price %>/-</p>
-                </div>
-            </div>
-            <% } %>
+                <div id="loopEnd">
+            <% } %></div>
         </div>
+    </div>
+
         <% include partials/footer %>
             <!-- SCRIPTS -->
             <!-- JQuery -->
-            <script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+            <script type="text/javascript" src="/../js/jquery-3.3.1.min.js"></script>
             <!-- Bootstrap tooltips -->
-            <script type="text/javascript" src="../js/popper.min.js"></script>
+            <script type="text/javascript" src="/../js/popper.min.js"></script>
             <!-- Bootstrap core JavaScript -->
-            <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+            <script type="text/javascript" src="/../js/bootstrap.min.js"></script>
             <!-- MDB core JavaScript -->
-            <script type="text/javascript" src="../js/mdb.js"></script>
+            <script type="text/javascript" src="/../js/mdb.js"></script>
 </body>
+<script>
+    $(document).ready(function() {
+        var city = null;
+
+        $.ajax({
+            type: 'GET',
+            url: 'city', // This one is missing here
+            dataType: 'json'
+        }).done(function(data){
+            city = JSON.stringify(data);
+            var len = data.length;
+            for( var i = 0; i<len; i++){
+                var city = data[i];
+
+                $("#cities").append("<option value='"+city+"'>"+city+"</option>");
+            }
+        });
+    });
+
+    window.onload = function changeusers() {
+        var xmlhttp = new XMLHttpRequest();
+        var url = 'city';
+        var isbn = <%= book[0].ISBN %>;
+        var userId = null;
+        <% if(locals.user) { %>
+        userId = <%= user.id %>;
+        <% } %>
+        var params = 'ISBN='+isbn+'&id='+userId;
+        console.log(params);
+        xmlhttp.open('POST', url, true);
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                changeUsers(xmlhttp);
+            }
+        }
+        xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
+        xmlhttp.send(params);
+
+        function changeUsers(xmlhttp){
+            var users = JSON.parse(xmlhttp.responseText);
+            console.log(users.length);
+
+            }
+        }
+
+    </script>
 </html>

@@ -1,20 +1,85 @@
 var models = require('../models');
-
-exports.getSearch = function(req,res) {
-    models.user.aggregate('city', 'DISTINCT', { plain: false})
-    .map(function (row) { return row.DISTINCT })
-    .then(function (city) {
-        // console.log(city);
-        res.status(200);
-        return res.json(city);
-    }).catch(function (err) {
-        console.log("uh oh something wasn't right!");
-        console.log(err);
-        res.status(500).end();
-    })
-}
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 
 exports.postSearch = function(req, res) {
-    console.log(req.body);
-
+    if(req.body.fields == "Author") {
+        models.book.findAll({
+            include: [{
+                model: models.author,
+                where: { name: req.body.query }
+            }, {
+                model: models.publisher
+            }]
+        }).then(books => {
+            console.log(books);
+            // return res.json(books);
+            res.render('search',{
+                user: req.user,
+                book: books
+                });
+        })
+    }
+    else if(req.body.fields == "Publisher") {
+        models.book.findAll({
+            include: [{
+                model: models.publisher,
+                where: { name: req.body.query }
+            }, {
+                model: models.author
+            }]
+        }).then(books => {
+            console.log(books);
+            // return res.json(books);
+            res.render('search',{
+                user: req.user,
+                book: books
+                });
+        })
+    }
+    else if(req.body.fields == "Title"){
+        models.book.findAll({
+            include: [
+            { model: models.author },
+            { model: models.publisher }],
+            where: { title: req.body.query }
+        }).then(books => {
+            console.log(books);
+            // return res.json(books);
+            res.render('search',{
+                user: req.user,
+                book: books
+                });
+        })
+    }
+    else if(req.body.fields == "ISBN"){
+        models.book.findAll({
+            include: [
+            { model: models.author },
+            { model: models.publisher }],
+            where: { ISBN: req.body.query }
+        }).then(books => {
+            console.log(books);
+            // return res.json(books);
+            res.render('search',{
+                user: req.user,
+                book: books
+                });
+        })
+    }
+    else if(req.body.fields == "Genre"){
+        models.book.findAll({
+            include: [
+            { model: models.author },
+            { model: models.publisher }],
+            where: { genre: req.body.query }
+        }).then(books => {
+            console.log(books);
+            // return res.json(books);
+            res.render('search',{
+                user: req.user,
+                book: books
+                });
+        })
+    }
 }

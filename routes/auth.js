@@ -6,6 +6,7 @@ var addController = require('../controllers/addcontroller');
 var profileController = require('../controllers/profilecontroller');
 var marketController = require('../controllers/marketcontroller');
 var searchController = require('../controllers/searchcontroller');
+var cityController = require('../controllers/citycontroller');
 var bookController = require('../controllers/bookcontroller');
 
 var router = express.Router();
@@ -72,7 +73,11 @@ var router = express.Router();
 
     router.post('/reset/:token', authController.postReset);
 
-    router.get('/search', searchController.getSearch);
+    router.get('/search', cityController.getCity);
+
+    router.get('/book/city', cityController.getCity);
+
+    router.post('/book/city', cityController.postCity);
 
     router.post('/search', searchController.postSearch);
 

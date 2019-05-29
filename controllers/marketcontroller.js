@@ -3,33 +3,34 @@ var Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
 exports.listallbooks = function(req,res){
-	// console.log(req.body);
-    if(req.user)
+	// console.log(req.user);
+    if(req.user) {
     models.book.findAll({ include:[{
     	model: models.owned,
     	as : "owned by",
         where : {userId: { [Op.ne]: req.user.id}}
     }]
      }).then(books => {
+      // console.log(books);
       res.render('market',{
       user: req.user,
       book: books
       });
-    })
-    else
+    }) }
+    else {
     models.book.findAll({ include:[{
     	model: models.owned,
     	as : "owned by",
         where : {bookId: { [Op.ne]: "NULL" }}
     }]
      }).then(books => {
-    //   console.log(books);
+      // console.log(books);
       res.render('market',{
-     // user: req.user,
+      user: req.user,
       book: books
       });
 
-    })
+    }) }
 
 
 }
