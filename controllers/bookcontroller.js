@@ -16,7 +16,7 @@ exports.getBook = function(req, res) {
             model: models.user,
         }]
     }],
-    where: { isbn: req.params.ISBN }
+    where: { ISBN: req.params.ISBN }
      }).then(books => {
         // var mybook = JSON.stringify(books);
         // console.log(mybook);
@@ -38,7 +38,7 @@ exports.getBook = function(req, res) {
             model: models.user,
         }]
     }],
-    where: { isbn: req.params.ISBN }
+    where: { ISBN: req.params.ISBN }
      }).then(books => {
     //   var mybook = JSON.stringify(books);
     //   console.log(mybook);
