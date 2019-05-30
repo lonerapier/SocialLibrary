@@ -236,6 +236,7 @@ exports.request =function(req,res){
         bookId: req.params.id,
         borrowerId: req.user.id
     };
+    console.log(data);
     models.request.build(data)
                 .save()
                 .then(anotherTask => {
