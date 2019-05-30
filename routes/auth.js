@@ -11,6 +11,8 @@ var bookController = require('../controllers/bookcontroller');
 
 var router = express.Router();
 
+    router.get('/', authController.getSignin);
+    
     router.get('/signup', authController.getSignup);
 
     router.post('/signup',
