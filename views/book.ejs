@@ -71,7 +71,6 @@
                 </div>
                 <br><hr>
                 <div class = "usersOwned" tag = "usersOwned"></div>
-            <span id="userCount"><%= book[0]["owned by"].length %></span> users currently are in possession of this book.
             <div id="loopStart">
             <% for(var i = 0; i< book[0]["owned by"].length; i++) { %></div>
             <div class="userList" name = <%= book[0]["owned by"][i].user.city%>>
