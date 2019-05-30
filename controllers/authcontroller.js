@@ -163,7 +163,7 @@ exports.postForgot = function(req, res, next) {
             var smtpTransport = nodemailer.createTransport({
               service: 'SendGrid',
               auth: {
-                user: 'sociallibrary',
+                user: 'sociallibrary1',
                 pass: 'SocialLibrary1'
               }
             });
@@ -281,7 +281,7 @@ exports.postReset = function(req, res, next) {
             var smtpTransport = nodemailer.createTransport({
               service: 'SendGrid',
               auth: {
-                user: 'sociallibrary',
+                user: 'sociallibrary1',
                 pass: 'SocialLibrary1'
               }
             });
