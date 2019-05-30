@@ -40,6 +40,7 @@
   text-align: center;
   padding: 14px 16px;
   margin-left: 5px;
+  margin-top: 2px;
   text-decoration: none;
 }
 
@@ -117,4 +118,26 @@ div.block{
 .button1:hover{
   background-color: #2bbbad;
   color: white;
+}
+
+@media screen and (max-width: 800px) {
+  ul.vtab {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  
+  .vtabs {
+    float: left;
+    padding: 15px;
+  }
+  
+  div.content {margin-left: 0;}
+}
+
+@media screen and (max-width: 560px) {
+  .vtabs {
+    text-align: center;
+    float: none;
+  }
 }
