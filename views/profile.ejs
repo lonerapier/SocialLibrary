@@ -192,7 +192,7 @@
                 <% for(var i = 0; i< book.length; i++) { %>
                     <div class="post-container">
                     <hr>
-
+                    <p><span class="post-thumb" id="photo"><img src="<%= book[i]["owned by"][0].URL %>"></span></p>
                     <div class="post-content" id="details">
 
                         <p><span id="title">Title : <%= book[i].title %></span></p>  <a href="/profile/<%= book[i]["owned by"][0].id %>"><button class="float-right btn btn-info my-2" type="submit">Remove Book</button></a>

@@ -14,29 +14,45 @@
     <link href="css/mdb.min.css" rel="stylesheet">
     <!-- Your custom styles (optional) -->
     <link href="css/market.css" rel="stylesheet">
+    <link href="css/w3.css" rel="stylesheet">
 </head>
 
 <body>
     <% include partials/header %>
     <div class="container">
         <% include partials/searchbar %>
-        <div class="col mb-1">
-            <p id="market-head">
-                These books are currently available in the market.
-            </p>
+        <div class="container">
+     <p id="market-head">
+                
+               <center> These books are currently available in the market. </center>
+            </p> <hr>
+                  
             <% for(var i = 0; i< book.length; i++) { %>
-            <div class="post-container">
-                <hr>
+            
+                
+                       
+               
 
-                <div class="post-content" id="details">
-                    <p class="post-title"><a href="/book/<%= book[i].ISBN %>"><span id="name"><%=book[i].title %></span></a></p>
-                    <p><span id="quantity">Genre : <%= book[i].genre %></span></p>
-                    <p><span id="expiry">Language : <%= book[i].language %></span></p>
-                </div>
-            </div>
+
+                    <div class="post-container">
+                            
+                            <p><span class="post-thumb" id="photo"><img src="<%= book[i]["owned by"][0].URL %>"></span></p>
+                            <div class="post-content" id="details">
+                                    
+                                <p><a href="/book/<%= book[i].ISBN %>"><span id="name"><button class="w3-button w3-custom"><%=book[i].title %></button></span></a></p>
+                                <p><span id="title">Title : <%= book[i].title %></span></p>  
+                                <p><span id="quantity">Genre <%= book[i].genre %></span></p>
+                                <p><span id="expiry">Language : <%= book[i].language %></span></p>
+        
+                            </div>
+                        </div>
+                
+            
+        
+            <hr>
+        
             <% } %>
-        </div>
-    </div>
+        </div></div>
     <% include partials/footer %>
 </body>
 <script>
@@ -50,6 +66,7 @@ $(document).ready(function() {
     }).done(function(data){
         city = JSON.stringify(data);
         console.log(city);
+        console.log(book[i-1]["owned by"][i].URL)
         var len = data.length;
         for( var i = 0; i<len; i++){
             var city = data[i];
