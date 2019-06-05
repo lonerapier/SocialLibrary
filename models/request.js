@@ -5,9 +5,9 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.ENUM('onhold', 'accept','reject'),
         defaultValue: 'onhold'
     },
-    return: {
-        type: DataTypes.ENUM('nothing', 'received', 'returned'),
-        defaultValue: 'nothing'
+    bstatus: {
+        type: DataTypes.ENUM('onhold', 'received', 'returned'),
+        defaultValue: 'onhold'
     },
     accepted: {
         type: DataTypes.DATE,

@@ -73,6 +73,7 @@
                 <div class = "usersOwned" tag = "usersOwned"></div>
             <div id="loopStart">
             <% for(var i = 0; i< book[0]["owned by"].length; i++) { %></div>
+            <% if( book[0]["owned by"][i].borrowed==false ) { %>
             <div class="userList" name = <%= book[0]["owned by"][i].user.city%>>
                 <div class="row">
                     <a href="/request/<%= book[0]["owned by"][i].id%>"><p><span></span></p>
@@ -99,7 +100,8 @@
                         <p><%= book[0]["owned by"][i].price %>/-</p>
                     </div>
                 </div>
-            </div>    
+            </div>
+            <% } %>    
             <div id="loopEnd">
             <% } %></div>
         </div>

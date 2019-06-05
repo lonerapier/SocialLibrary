@@ -189,14 +189,25 @@
                     dat+=requestdata[i].user.firstname;
                     dat+=" ";
                     dat+=requestdata[i].user.lastname;
+                    dat+="</span></p><p><span id=\"Email\">Email : ";
+                    dat+=requestdata[i].user.email;
+                    dat+="</span></p><p><span id=\"Phone\">Phone : ";
+                    dat+=requestdata[i].user.phone;
                     dat+="</span></p>";
                     dat+="</div>";
-                    dat+="<a href=\"/accept/";
-                    dat+=requestdata[i].id;
-                    dat+="\"><button class=\"button1\">Accept</button></a>";
-                    dat+="<a href=\"/reject/";
-                    dat+=requestdata[i].id;
-                    dat+="\"><button class=\"button1\">Reject</button></a>";
+                    if(requestdata[i].status=="onhold") {
+                        dat+="<a href=\"/accept/";
+                        dat+=requestdata[i].id;
+                        dat+="\"><button class=\"button1\">Accept</button></a>";
+                        dat+="<a href=\"/reject/";
+                        dat+=requestdata[i].id;
+                        dat+="\"><button class=\"button1\">Reject</button></a>";
+                    }
+                    else {
+                        dat+="<a href=\"/cancel/";
+                        dat+=requestdata[i].id;
+                        dat+="\"><button class=\"button1\">Cancel</button></a>";
+                    }
                     dat+="</div></div><br>";
                 }
                     dat+="<hr>";

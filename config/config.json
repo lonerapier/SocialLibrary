@@ -1,9 +1,0 @@
-{
-    "development": {
-      "username": "lupxiiaufiffys",
-      "password": "4cf19e92e5f8b823fa13de42f2a8eba98926ba97c6cc2db98862ab0ca4768a39",
-      "database": "d7hapcm2tv4kbj",
-      "host": "ec2-54-75-230-253.eu-west-1.compute.amazonaws.com",
-      "dialect": "postgres"
-    }
-}

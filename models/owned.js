@@ -9,6 +9,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.ENUM('lend', 'sell'),
         allowNull: false,
     },
+    borrowed: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
     URL: {
         type: DataTypes.STRING,
         allowNull: false,

@@ -8,6 +8,7 @@ var marketController = require('../controllers/marketcontroller');
 var searchController = require('../controllers/searchcontroller');
 var cityController = require('../controllers/citycontroller');
 var bookController = require('../controllers/bookcontroller');
+var requestController = require('../controllers/requestcontroller');
 
 var router = express.Router();
 
@@ -85,23 +86,25 @@ var router = express.Router();
 
     router.get('/book/:ISBN', bookController.getBook);
 
-    router.post('/getsentrequest', addController.sentrequest);
+    router.post('/getsentrequest', requestController.sentrequest);
 
-    router.post('/getrecrequest', addController.recrequest);
+    router.post('/getrecrequest', requestController.recrequest);
 
-    router.get('/receive/:id',addController.receive);
+    router.get('/receive/:id',requestController.receive);
 
-    router.get('/accept/:id',addController.accept);
+    router.get('/accept/:id',requestController.accept);
 
-    router.get('/reject/:id',addController.reject);
+    router.get('/reject/:id',requestController.reject);
 
-    router.get('/request/:id',addController.request);
+    router.get('/cancel/:id',requestController.reject);
 
-    router.get('/return/:id',addController.return);
+    router.get('/request/:id',requestController.request);
 
-    router.post('/getbbooks', addController.bbooks);
+    router.get('/return/:id',requestController.return);
 
-    router.post('/getlbooks', addController.lbooks);
+    router.post('/getbbooks', requestController.bbooks);
+
+    router.post('/getlbooks', requestController.lbooks);
 
     function isLoggedIn(req, res, next) {
         if (req.isAuthenticated())
