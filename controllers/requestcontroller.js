@@ -68,6 +68,68 @@ exports.reject = function(req,res){
     });
 }
 
+exports.cancel = function(req,res) {
+    async.waterfall([
+        function(done) {
+            models.request.update({
+                status: 'reject'
+            },
+            {
+                where: {
+                    id: req.params.id
+                }
+            }).then(function(result) {
+                console.log('JCB hai sahi hai');
+                done(null);
+            }).catch(function (err) {
+                console.log("Oops you messed up!");
+                console.log(err);
+                request.server.log(['error'], err.stack);
+                done(err,null);
+            });
+        },
+        function(done) {
+            models.owned.findOne({
+                attributes: ['id'],
+                include: [{
+                    model: models.request,
+                    where: {
+                        id: req.params.id
+                    },
+                }],
+            }).then(data => {
+                console.log(data);
+                done(null,data);                
+            }).catch(function(err){
+                console.log("Messed Up Status");
+                console.log(err);
+                done(err,null);
+            });
+        },
+        function(data,done) {
+            models.owned.update({
+                borrowed: false,
+            },
+            {
+                where: {
+                    id: data.id
+                }
+            }).then(function(result) {
+                console.log('JCB hai sahi hai');
+                res.redirect('/dashboard');
+            }).catch(function (err) {
+                console.log("Oops you messed up!");
+                console.log(err);
+                request.server.log(['error'], err.stack);
+                done(err,null);
+            });
+        }
+    ],function(err) {
+        console.log(err);
+        res.redirect('/dashboard');
+    });
+}
+
 exports.accept = function(req,res){
     async.waterfall([
         function(done) {
@@ -213,9 +275,7 @@ exports.receive = function(req,res){
     ],function(err) {
         if (err) return next(err);
             res.redirect('/dashboard');
-    });
-    
-    
+    });   
 }
 
 exports.bbooks =function(req,res){

@@ -96,7 +96,7 @@ var router = express.Router();
 
     router.get('/reject/:id',requestController.reject);
 
-    router.get('/cancel/:id',requestController.reject);
+    router.get('/cancel/:id',requestController.cancel);
 
     router.get('/request/:id',requestController.request);
 
