@@ -12,7 +12,9 @@ var requestController = require('../controllers/requestcontroller');
 
 var router = express.Router();
 
-    router.get('/', authController.getSignin);
+    router.get('/', function(req,res){
+        res.render('about');
+    });
     
     router.get('/signup', authController.getSignup);
 
