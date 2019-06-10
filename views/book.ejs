@@ -18,8 +18,68 @@
 
 <body>
     <% include partials/header %>
+        <center><div class="blockimg">
+            <img src="<%= book[0]["owned by"][0].URL %>" class="bimage" >
+        </div>
+        <h1><%= book[0].title %></h1>
+        </center>
+        <div class="details">
+        <h4>Details</h4>
+        <table>
+            <tr>
+                <th>Field</td>
+                <th>Description</td>
+            </tr>
+            <tr>
+                <td>Author</td>
+                <td><%= book[0].author.name %></td>
+            </tr>
+            <tr>
+                <td>Publisher</td>
+                <td><%= book[0].publisher.name %></td>
+            </tr>
+            <tr>
+                <td>Genre</td>
+                <td><%= book[0].genre %></td>
+            </tr>
+            <tr>
+                <td>Language</td>
+                <td><%= book[0].language %></td>
+            </tr>
+            <tr>
+                <td>ISBN</td>
+                <td><%= book[0].ISBN %></td>
+            </tr>
+        </table>    
+        </div>
 
-        <div class="post-container" id="profile-details">
+        <div class="userlist">
+            <span style="font-size:24px; display:block;">Users with the Book</span>
+            <div style="display:inline-block;">
+                <span style="font-size:20px;">Region </span>
+                <div class="city" id="city">
+                        <select class="bselect" name="cities" id="cities" onchange="changecity()">
+                        <option id="All India" value="All India" selected>All India</option>
+                        </select>
+                    </div>
+            </div>
+            <% for(var i = 0; i< book[0]["owned by"].length; i++) { %>
+                <% if( book[0]["owned by"][i].borrowed==false ) { %>
+                    <div class="userList" name=<%= book[0]["owned by"][i].user.city%> >
+                        <hr>
+                        <img style="display: inline-block;" src="<%= book[0]["owned by"][0].URL %>" height=180px width=130px>
+                        <div style="display:inline-block; margin:2px; vertical-align: top;">
+                            <p>Owner : <%= book[0]["owned by"][i].user.firstname %></p>
+                            <p>For <%= book[0]["owned by"][i].status %></p>
+                            <p>Price : Rs. <%= book[0]["owned by"][i].price %>/-</p>
+                            <a href="/request/<%= book[0]["owned by"][i].id%>"><button class="float-right btn btn-info my-2" type="submit" id="requestButton">Send Request</button></a>
+                        </div>
+                    </div>
+                <% } %>
+            <% } %>
+                    <hr>
+        </div>
+        <!-- <div class="post-container" id="profile-details">
                 <div class="post-content" id="details">
                     <h1><p class="post-title"><span id="title"><%= book[0].title %></span></p></h1>
                     <div class="tab-pane" id="profile-details">
@@ -105,7 +165,7 @@
             <div id="loopEnd">
             <% } %></div>
         </div>
-    </div>
+    </div> -->
 
         <% include partials/footer %>
             <!-- SCRIPTS -->
@@ -137,6 +197,7 @@
             <% if(locals.user) { %>
                 document.getElementById("All India").selected = false;
                 document.getElementById("<%= user.city %>").selected = true;
+                changecity();
             <% } %>
         });
     });
