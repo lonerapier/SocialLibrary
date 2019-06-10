@@ -41,10 +41,12 @@
         </a>
         <div class="dropdown-menu dropdown-menu-right dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
             <% if (locals.user) { %>
-              <div class="align-right">
+              <div style="text-align: right">
                 <a class="dropdown-item" href="/profile">Profile</a>
                 <a class="dropdown-item" href="/logout">Sign Out</a>
+              </div>
             <% } else { %>
+              <div style="text-align: right">
                 <a class="dropdown-item" href="/signin">Sign In</a>
                 <a class="dropdown-item" href="/signup">Register</a>
               </div>
