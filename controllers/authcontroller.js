@@ -71,6 +71,7 @@ exports.updateProfile = function(req, res) {
         firstname:req.body.firstname,
         lastname:req.body.lastname,
         phone:req.body.phone,
+        campus:req.body.campus,
         city:req.body.city,
       },
         {where: {id:req.user.id}})

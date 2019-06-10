@@ -36,6 +36,7 @@ module.exports = function(passport, user) {
                         firstname: req.body.firstname,
                         lastname: req.body.lastname,
                         phone: req.body.phone,
+                        campus:req.body.campus,
                         city: req.body.city
                     };
                     console.log(data);

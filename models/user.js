@@ -27,6 +27,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false, 
     },
+    campus: {
+      type: DataTypes.ENUM('north', 'south'),
+      allowNull: false,
+    },
     status: {
       type: DataTypes.ENUM('active', 'inactive'),
       defaultValue: 'inactive'

@@ -142,7 +142,15 @@
                 </div>
                 <div class="row">
                     <div class="col mb-4">
-                        <label>City</label>
+                        <label>Campus</label>
+                    </div>
+                    <div class="col mb-4">
+                        <p><%= user.campus %></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col mb-4">
+                        <label>Hostel</label>
                     </div>
                     <div class="col mb-4">
                         <p><%= user.city %></p>
@@ -151,7 +159,7 @@
             </div>
            <div>
              <% if(book.length != 0) { %>
-              <button class="float-right btn btn-primary my-2" id="myBtn">Update book</button><br> <div id="myModal" class="modal">
+              <button class="float-right btn btn-primary my-2" id="myBtn">Click here to Update books</button><br> <div id="myModal" class="modal">
 
                   <!-- Modal content -->
                   <div class="modal-content">

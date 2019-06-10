@@ -1,7 +1,13 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <header>
 <!--Navbar -->
 <nav class="mb-1 navbar navbar-expand-lg navbar-dark default-color">
-  <a class="navbar-brand" href="/market">Social Library</a>
+    <% if (locals.user) { %>
+      <a class="navbar-brand" href="#">Social Library</a>
+  <% } else { %>
+    <a class="navbar-brand" href="/">Social Library</a>
+  <% } %>
+  
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
     aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -35,11 +41,13 @@
         </a>
         <div class="dropdown-menu dropdown-menu-right dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
             <% if (locals.user) { %>
+              <div class="align-right">
                 <a class="dropdown-item" href="/profile">Profile</a>
                 <a class="dropdown-item" href="/logout">Sign Out</a>
             <% } else { %>
                 <a class="dropdown-item" href="/signin">Sign In</a>
                 <a class="dropdown-item" href="/signup">Register</a>
+              </div>
             <% } %>
         </div>
       </li>

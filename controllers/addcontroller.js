@@ -46,6 +46,7 @@ exports.addBooks = function(req,res){
                     price: req.body.price,
                     status: req.body.status,
                     URL: req.body.URL,
+                    location: req.user.campus,
                     bookId: bookid,
                     userId: req.user.id
                 }
