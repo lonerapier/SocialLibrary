@@ -14,6 +14,8 @@
     <link href="css/mdb.min.css" rel="stylesheet">
     <!-- Your custom styles (optional) -->
     <link href="css/market.css" rel="stylesheet">
+    <link href="css/w3.css" rel="stylesheet">
+    <link href="css/booklist.css" rel="stylesheet">
 </head>
 
 <body>
@@ -25,11 +27,20 @@
 
                <center> These books are currently available in the market. </center>
             </p> <hr>
-
+            <center>
             <% for(var i = 0; i< book.length; i++) { %>
                 <% if(book[i]["owned by"].length>0) { %>
-                    <div class="post-container">
-
+                    <div class="blist">
+                        <a href="/book/<%= book[i].ISBN %>">
+                            <img src="<%= book[i]["owned by"][0].URL %>" class="bimage">
+                            <div class = "btext">
+                                <p id="title" class="title"><%= book[i].title %></p>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <!-- <div class="post-container">
+                            
                             <p><span class="post-thumb" id="photo"><img src="<%= book[i]["owned by"][0].URL %>"></span></p>
                             <div class="post-content" id="details">
 
@@ -39,10 +50,11 @@
                                 <p><span id="expiry">Language : <%= book[i].language %></span></p>
 
                             </div>
-                        </div>
-                    <hr>
+                        </div>       
+                    <hr> -->
                 <% } %>
             <% } %>
+            </center>
         </div></div>
     <% include partials/footer %>
 </body>

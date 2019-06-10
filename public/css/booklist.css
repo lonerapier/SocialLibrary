@@ -1,0 +1,15 @@
+.blist {
+    display: inline-block;
+    padding: 5px;
+    margin: 5px;
+    width: 200px;
+}
+
+.bimage {
+    height: 200px;
+    width: 150px;
+}
+
+.btext {
+    float: bottom;
+}
