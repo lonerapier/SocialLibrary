@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/sheet.css">
     <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
-
+    <link href="css/w3.css" rel="stylesheet">
+    
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
     <!-- Bootstrap core CSS -->
@@ -23,22 +24,22 @@
         <% include partials/searchbar %>
         <div class="col mb-1">
             <p id="market-head">
-                These books are currently available in the market from search results.
+                <center>These books are currently available in the market from search results.</center>
             </p>
+            <center>
             <% for(var i = 0; i< book.length; i++) { %>
             <% if(book[i]["owned by"].length>0) { %>
-                <div class="post-container">
-                <hr>
-
-                <p><span class="post-thumb" id="photo"><img src="<%= book[i]["owned by"][0].URL %>"></span></p>
-                <div class="post-content" id="details">
-                    <p class="post-title"><a href="/book/<%= book[i].ISBN %>"><span id="name"><%=book[i].title %></span></a></p>
-                    <p><span id="quantity">Genre : <%= book[i].genre %></span></p>
-                    <p><span id="expiry">Language : <%= book[i].language %></span></p>
+                <div class="blist">
+                    <a href="/book/<%= book[i].ISBN %>">
+                        <img src="<%= book[i]["owned by"][0].URL %>" class="bimage">
+                        <div class = "btext">
+                            <p id="title" class="title"><%= book[i].title %></p>
+                        </div>
+                    </a>
                 </div>
-            </div>
             <% } %>
             <% } %>
+        </center>
         </div>
     </div>
     <% include partials/footer %>

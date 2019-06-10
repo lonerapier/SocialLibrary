@@ -1,13 +1,22 @@
 .blist {
+    vertical-align: top;
     display: inline-block;
     padding: 5px;
     margin: 5px;
-    width: 200px;
+    overflow: hidden;
+    height: 250px;
+    width: 160px;
+    box-shadow: 0 2px 4px 0 palegreen;
+    transition: 0.3s;
+}
+
+.blist:hover {
+    box-shadow: 0 3px 6px 0 palegreen;
 }
 
 .bimage {
     height: 200px;
-    width: 150px;
+    width: 100%;
 }
 
 .btext {
