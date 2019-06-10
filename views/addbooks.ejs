@@ -15,6 +15,9 @@
     <!-- Your custom styles (optional) -->
 
     <style>
+        input {
+            width: auto;
+        }
         .login-form {
             width: 600px;
             margin: 30px auto;
@@ -32,7 +35,7 @@
 </head>
 <body>
     <% include partials/header %>
-    <div class="container">
+    <div class="container" style="display: flex; flex-grow: 1;">
         <% if (locals.user) { %>
             <form id="addListForm" class="login-form text border border-light p-4" method="post" action="/addbooks">
 
@@ -40,7 +43,7 @@
 
                 <!-- ISBN -->
                 <p>ISBN</p>
-                <input list="ISBN" id="addListISBN" class="form-control mb-4" name="ISBN" required oninput="getList()" onblur="getIsbn()">
+                <input list="ISBN" id="addListISBN" class="form-control mb-4" name="ISBN" required oninput="getList()" onblur="getIsbn()" style="flex-grow: 1;">
                 <datalist id="ISBN">
                     <option>abc</option>
                 </datalist>
