@@ -1,121 +1,106 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-	<title>Social-Library: Login</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->
-	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="css/util.css">
-	<link rel="stylesheet" type="text/css" href="css/main.css">
-<!--===============================================================================================-->
+    <title> SocialLibrary | Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
+
+    <!-- Font Awesome -->
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+<!-- Bootstrap core CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+<!-- Material Design Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.2/css/mdb.min.css" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <!-- <link href="css/style.css" rel="stylesheet"> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
     <style>
-        .alert {
-        padding: 5px;
-        color: red;
-        opacity: 1;
-        transition: opacity 0.6s; /* 600ms to fade out */
-		display: block;
+        .login-form {
+		width: 400px;
+		margin: 30px auto;
 	}
+    .login-form form {
+    	margin-bottom: 15px;
+        background: #f7f7f7;
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+        padding: 30px;
+    }
+    .login-form h2 {
+        margin: 0 0 15px;
+    }
+        .alert {
+          padding: 15px;
+          background-color: #f44336;
+          color: white;
+          opacity: 1;
+        transition: opacity 0.6s; /* 600ms to fade out */
+        }
+
+        .closebtn {
+          margin-left: 15px;
+          color: white;
+          font-weight: bold;
+          float: right;
+          font-size: 22px;
+          line-height: 15px;
+          cursor: pointer;
+          transition: 0.3s;
+        }
 
         .closebtn:hover {
-        color: black;
-		}
-    </style>
-
+          color: black;
+        }
+        </style>
 </head>
-
 <body>
-    <div class="limiter">
-		<div class="container-login100">
-				<div class="page-title">
-						Social Library
-					</div>
-			<div class="wrap-login100">
-				<div class="login100-pic js-tilt" >
-					<img src="images/6971.jpg" alt="IMG">
-				</div>
+        <% include partials/header %>
+    <form class="login-form text-center border border-light p-4" method="post" action="/signin">
 
-				<form class="login100-form validate-form" action="/signin" method="post" >
-					<span class="login100-form-title">
-						Member Login
-					</span>
-					<div class="alert">
-						<% if(message) { %>
-						<strong>Warning!</strong> <%= message %>
-						<% } %>
-					</div>
-					<div class="input-email" id="input-email" onkeypress="return validatemail()">
-						<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-							<input class="input100" type="text" name="email" id="email" placeholder="Email">
-							<span class="focus-input100"></span>
-							<span class="symbol-input100">
-								<i class="fa fa-envelope" aria-hidden="true"></i>
-							</span>
-						</div>
-					</div>
+            <p class="h2 mb-4">Sign in</p>
 
-					<div class="input-pass" id="input-pass" >
-						<div class="wrap-input100 validate-input" data-validate = "Password is required">
-							<input class="input100" type="password" name="password" id="password" placeholder="Password">
-							<span class="focus-input100"></span>
-							<span class="symbol-input100">
-								<i class="fa fa-lock" aria-hidden="true"></i>
-							</span>
-						</div>
-					</div>
+                <!-- <p ><font size="4" color="red"><%= message %></font></p> -->
+                <% if(message) { %>
+                <div class="alert">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                    <strong>Warning!</strong> <%= message %>
+                </div>
+                <% } %>
+            <!-- Email -->
+            <input type="email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="Email" name="email">
 
-					<div class="container-login100-form-btn">
-						<button class="login100-form-btn" id="but_submit">
-							Login
-						</button>
-					</div>
-					<div class="text-center p-t-70">
-						<a class="txt2" href="/signup">
-							Create your Account
-							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
-						</a>
-					</div>
-					<div class="text-center p-t-10">
-						<a class="txt2" href="/forgot">
-							Forgot Password?
-							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
-						</a>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
+            <!-- Password -->
+            <input type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password" name="password">
 
-<!--===============================================================================================-->
-<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
-<!--===============================================================================================-->
-<script src="vendor/bootstrap/js/popper.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-<!--===============================================================================================-->
-<script src="vendor/select2/select2.min.js"></script>
-<!--===============================================================================================-->
-<script src="vendor/tilt/tilt.jquery.min.js"></script>
-<script >
-	$('.js-tilt').tilt({
-		scale: 1.1,
-		glare: true,
-		maxGlare: .5
-	})
-</script>
-<!--===============================================================================================-->
-<script src="js/main.js"></script>
+            <!-- Sign in button -->
+            <button class="btn btn-info btn-block my-4" type="submit">Sign In</button>
 
+            <!-- Register -->
+            <p>Not a member?
+                <a href="/signup">Register</a>
+            </p>
+            <p>
+                <a href="/forgot">Forgot password?</a>
+            </p>
+            <!-- Social login -->
+            <!-- <p>or sign in with:</p>
+
+            <a type="button" class="light-blue-text mx-2">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a type="button" class="light-blue-text mx-2">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a type="button" class="light-blue-text mx-2">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a type="button" class="light-blue-text mx-2">
+                <i class="fab fa-github"></i>
+            </a> -->
+
+        </form>
+    <% include partials/footer %>
 </body>
 </html>

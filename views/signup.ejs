@@ -1,158 +1,118 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-	<title> Social-Library: SignUp </title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->
-	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="css/util.css">
-	<link rel="stylesheet" type="text/css" href="css/mainr.css">
-<!--===============================================================================================-->
+    <title> SocialLibrary | Register</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/sheet.css">
+    <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="css/mdb.min.css" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <!-- <link href="css/style.css" rel="stylesheet"> -->
+    <style>
+        .login-form {
+        width: 500px;
+        margin: 30px auto;
+        }
+        .login-form form {
+            margin-bottom: 15px;
+            background: #f7f7f7;
+            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+            padding: 30px;
+        }
+        .login-form h2 {
+            margin: 0 0 15px;
+        }
+        .alert {
+            padding: 15px;
+            background-color: #f44336;
+            color: white;
+            opacity: 1;
+            transition: opacity 0.6s; /* 600ms to fade out */
+        }
+    </style>
 </head>
 
 <body>
-        <body>
-    <div class="limiter">
-        <div class="container-login100">
-                <div class="page-title">
-                        Social Library
-                    </div>
-    <div class="wrap-login100">
-        <div>
-        <p class="avatar"> Choose an avatar: </p>
-        <br />
-        <div class="cc-selector">
-            <input checked="checked" id="ava1" type="radio" name="avatar" value="ava1" />
-            <label class="drinkcard-cc ava1" for="ava1"></label>
-            <input id="ava2" type="radio" name="avatar" value="ava2" />
-            <label class="drinkcard-cc ava2" for="ava2"></label>
-            <br />
-            <input id="ava3" type="radio" name="avatar" value="ava3" />
-            <label class="drinkcard-cc ava3" for="ava3"></label>
-            <input id="ava4" type="radio" name="avatar" value="ava4" />
-            <label class="drinkcard-cc ava4" for="ava4"></label>
-        </div>
-        <div class="alreadytxt" > <a class="txt2" href="/signin">
-                    Already have a account? Log in
-                    <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
-                </a>
-        </div> </div>
-    <form id="signup" action="/signup" method="post" class="login100-form validate-form">
-                    <span class="login100-form-title">
-                        Create Your Free Account
-                    </span>
-            <table id="frm">
-                <div class="input-email">
-                    <tr id="mailrow">
-                    <td> <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-                                <input class="input100" type="text" id="email" name="email" required placeholder="Enter your mail ID." onkeypress="return validatemail()"> </input>
-                            <span class="focus-input100"></span>
-                            <span class="symbol-input100">
-                                <i class="fa fa-envelope" aria-hidden="true"></i>
-                            </span>
-                            </div> </td>
-                </tr> </div>
-                <tr id="passrow">
-                    <td><div class="wrap-input100 validate-input" data-validate = "Password is required">
-                            <input class="input100" type="password" name="password" id="password" required placeholder="Set a new password" onkeypress="return validatepass()">
-                            <span class="focus-input100"></span>
-                            <span class="symbol-input100">
-                                <i class="fa fa-lock" aria-hidden="true"></i>
-                            </span>
-                        </div>
-                            </input> </td>
-                </tr>
-                <tr id="confpassrow">
-                    <td><div class="wrap-input100 validate-input" data-validate = "Password is required">
-                            <input class="input100" type="password" name="confpassword" id="confpassword" required placeholder="Confirm the password" onkeypress="return validateconfpass()">
-                            <span class="focus-input100"></span>
-                            <span class="symbol-input100">
-                                <i class="fa fa-lock" aria-hidden="true"></i>
-                            </span>
-                        </div>
-                            </input> </td>
-                </tr>
-                <tr id="firstnamerow">
-                    <td><div class="wrap-input100 validate-input" data-validate = "Password is required">
-                            <input class="input100" type="text" id ="firstname" name="firstname" required placeholder="Enter your first name."  onkeypress="return validatefirstname()">
-                            <span class="focus-input100"></span>
-                            <span class="symbol-input100">
-                                <i class="fa fa-vcard-o" aria-hidden="true"></i>
-                            </span>
-                        </div>
-                            </td>
-                </tr>
-                <tr id="lastnamerow">
-                    <td><div class="wrap-input100 validate-input" data-validate = "Password is required">
-                            <input class="input100" type="text" id ="lastname" name="lastname" required placeholder="Enter your last name."  onkeypress="return validatelastname()">
-                            <span class="focus-input100"></span>
-                            <span class="symbol-input100">
-                                <i class="fa fa-vcard-o" aria-hidden="true"></i>
-                            </span>
-                        </div>
-                    </td>
-                </tr>
-                <tr id="contactrow">
-                    <td><div class="wrap-input100">
-                            <input class="input100" type="text" id="contact" name="contact" required placeholder="Enter your contact No.">
-                            <span class="focus-input100"></span>
-                            <span class="symbol-input100">
-                                <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-                            </span>
-                        </div>
-                            </td>
-                </tr>
-                <tr id="cityrow">
-                    <td><div class="wrap-input100 validate-input">
-                            <input class="input100" type="text" id="city" name="city" required placeholder="Enter your city">
-                            <span class="focus-input100"></span>
-                            <span class="symbol-input100">
-                                <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-                            </span>
-                        </div>
-                    </td>
-                </tr>
-                <tr id="subrow">
-                    <td> <div class="container-login100-form-btn">
-                        <input class="login100-form-btn" type="submit" value="Register"> </div>
-                    </td>
-                </tr>
-                <tr class="form-group">
-                    <td>
-                    <span class="error"></span><br>
-                    </td>
-                </tr>
-            </table>
-        </form>
+    <% include partials/header %>
+    <!-- Default form register -->
+    <form class="login-form text-center border border-light p-4" id="signup" method="post" action="/signup">
 
+        <p class="h2 mb-4">Sign Up</p>
+
+        <!-- First Name -->
+        <input type="name" id="defaultRegisterFormname" class="form-control mb-4" placeholder="First Name" name="firstname" required>
+
+        <!-- Last Name -->
+        <input type="name" id="defaultRegisterFormname" class="form-control mb-4" placeholder="Last Name" name="lastname" required>
+
+        <!-- E-mail -->
+        <input type="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail" name="email" required>
+
+        <!-- Password -->
+        <input type="password" class="form-control mb-4" placeholder="Password" name="password" id="password" required>
+
+        <input type="password" class="form-control mb-4" name="confpassword" id="confpassword" placeholder="Confirm the password">
+        <!-- <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+            At least 8 characters and 1 digit
+        </small> -->
+
+        <!-- Phone number -->
+        <input type="text" id="defaultRegisterPhone" class="form-control mb-4" placeholder="Phone number" name="phone" required>
+        <!-- <small id="defaultRegisterFormPhoneHelpBlock" class="form-text text-muted mb-4">
+            Optional - for two step authentication
+        </small> -->
+
+        <!-- City -->
+        <input type="text" id="defaultRegisterFormCity" class="form-control mb-4" placeholder="City" name="city" required>
+
+        <strong><span class="error text-danger"></span></strong>
+        <!-- Newsletter -->
+        <!-- <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="defaultRegisterFormNewsletter">
+            <label class="custom-control-label" for="defaultRegisterFormNewsletter">Subscribe to our newsletter</label>
+        </div> -->
+
+        <!-- Sign up button -->
+        <button class="btn btn-info my-4 btn-block" type="submit">Sign Up</button>
+
+        <!-- Social register -->
+        <!-- <p>or sign up with:</p>
+
+        <a type="button" class="light-blue-text mx-2">
+            <i class="fab fa-facebook-f"></i>
+        </a>
+        <a type="button" class="light-blue-text mx-2">
+            <i class="fab fa-twitter"></i>
+        </a>
+        <a type="button" class="light-blue-text mx-2">
+            <i class="fab fa-linkedin-in"></i>
+        </a>
+        <a type="button" class="light-blue-text mx-2">
+            <i class="fab fa-github"></i>
+        </a> -->
+
+        <hr>
+
+        <!-- Terms of service -->
+        <p>By clicking
+            <em>Sign up</em> you agree to our
+            <a href="" target="_blank">terms of service</a>
+        </p>
+        <p>Already a member?
+            <a href="/signin">Sign In</a>
+        </p>
+    </form>
+    <!-- Default form register -->
+    <% include partials/footer %>
 </body>
-<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
-<!--===============================================================================================-->
-    <script src="vendor/bootstrap/js/popper.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-<!--===============================================================================================-->
-    <script src="vendor/select2/select2.min.js"></script>
-<!--===============================================================================================-->
-<script src="vendor/tilt/tilt.jquery.min.js"></script>
-<script >
-    $('.js-tilt').tilt({
-        scale: 1.1,
-        glare: true,
-        maxGlare: .5
-    })
-</script>
+<script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+
 <script>
     var allowsubmit = false;
     $(function(){
@@ -160,7 +120,7 @@
         $('#confpassword').keyup(function(e){
             //get values
             var pass = $('#password').val();
-            var confpass = $(this).val();
+            var confpass = $('#confpassword').val();
 
             //check the strings
             if(pass == confpass){
@@ -193,45 +153,4 @@
         });
     });
 </script>
-<script type="text/javascript">
-    function validatemail()
-    {
-        if(window.event && window.event.keyCode == 13) {
-        var mail = document.getElementById("email").value;
-        atpos = mail.indexOf("@");
-        dotpos = mail.lastIndexOf(".");
-        if (atpos < 1 || ( dotpos - atpos < 2 ))
-        {
-            alert("Please enter correct email ID");
-            document.signup.email.focus() ;
-            return false;
-        }
-        document.getElementById("passrow").style.display="block";
-        document.getElementById("passrow").focus();
-        document.getElementById("password").select();
-        return false;
-        }
-    }
-
-    function validatepass() {
-        if(window.event && window.event.keyCode == 13) {
-            var pword = document.getElementById("password").value;
-            if(pword.length<6) {
-                alert("Password must contain atleast 6 characters");
-                document.getElementById("password").focus();
-                return false;
-                }
-        }
-    }
-    function validateconfpass() {
-        if(window.event && window.event.keyCode == 13) {
-            var pword = document.getElementById("confpassword").value;
-            if(pword.length<6) {
-                alert("Password must contain atleast 6 characters");
-                document.getElementById("confpassword").focus();
-                return false;
-                }
-        }
-    }
-    </script>
 </html>
