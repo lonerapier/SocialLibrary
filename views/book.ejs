@@ -65,7 +65,7 @@
             </div><br>
             <div class="city" id="city">
                     <select class="mdb-select" name="cities" id="cities" onchange="changecity()">
-                    <option value="All India" selected>All India</option>
+                    <option id="All India" value="All India" selected>All India</option>
 
                     </select>
                 </div>
@@ -132,8 +132,12 @@
             for( var i = 0; i<len; i++){
                 var city = data[i];
 
-                $("#cities").append("<option value='"+city+"'>"+city+"</option>");
+                $("#cities").append("<option id='"+city+"' value='"+city+"'>"+city+"</option>");
             }
+            <% if(locals.user) { %>
+                document.getElementById("All India").selected = false;
+                document.getElementById("<%= user.city %>").selected = true;
+            <% } %>
         });
     });
 

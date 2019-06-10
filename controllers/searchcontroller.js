@@ -7,9 +7,13 @@ exports.postSearch = function(req, res) {
         models.book.findAll({
             include: [{
                 model: models.author,
-                where: { name: req.body.query }
+                where: { name: {[Op.like]: '%'+req.body.query+'%'} }
             }, {
                 model: models.publisher
+            }, {
+                model: models.owned,
+                as : "owned by",
+                where : {bookId: { [Op.ne]: "NULL" }}
             }]
         }).then(books => {
             console.log(books);
@@ -24,9 +28,13 @@ exports.postSearch = function(req, res) {
         models.book.findAll({
             include: [{
                 model: models.publisher,
-                where: { name: req.body.query }
+                where: { name: {[Op.like]: '%'+req.body.query+'%'} }
             }, {
                 model: models.author
+            }, {
+                model: models.owned,
+                as : "owned by",
+                where : {bookId: { [Op.ne]: "NULL" }}
             }]
         }).then(books => {
             console.log(books);
@@ -41,8 +49,12 @@ exports.postSearch = function(req, res) {
         models.book.findAll({
             include: [
             { model: models.author },
-            { model: models.publisher }],
-            where: { title: req.body.query }
+            { model: models.publisher }, {
+                model: models.owned,
+                as : "owned by",
+                where : {bookId: { [Op.ne]: "NULL" }}
+            }],
+            where: { title: {[Op.like]: '%'+req.body.query+'%'} }
         }).then(books => {
             console.log(books);
             // return res.json(books);
@@ -56,8 +68,12 @@ exports.postSearch = function(req, res) {
         models.book.findAll({
             include: [
             { model: models.author },
-            { model: models.publisher }],
-            where: { ISBN: req.body.query }
+            { model: models.publisher }, {
+                model: models.owned,
+                as : "owned by",
+                where : {bookId: { [Op.ne]: "NULL" }}
+            }],
+            where: { ISBN: {[Op.like]: '%'+req.body.query+'%'} }
         }).then(books => {
             console.log(books);
             // return res.json(books);
@@ -71,8 +87,12 @@ exports.postSearch = function(req, res) {
         models.book.findAll({
             include: [
             { model: models.author },
-            { model: models.publisher }],
-            where: { genre: req.body.query }
+            { model: models.publisher }, {
+                model: models.owned,
+                as : "owned by",
+                where : {bookId: { [Op.ne]: "NULL" }}
+            }],
+            where: { genre: {[Op.like]: '%'+req.body.query+'%'} }
         }).then(books => {
             console.log(books);
             // return res.json(books);

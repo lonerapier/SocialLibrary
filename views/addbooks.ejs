@@ -41,7 +41,7 @@
 
                 <!-- ISBN -->
                 <p>ISBN</p>
-                <input list="ISBN" id="addListISBN" class="form-control mb-4" name="ISBN" required oninput="getList()" onchange="getIsbn()">
+                <input list="ISBN" id="addListISBN" class="form-control mb-4" name="ISBN" required oninput="getList()" onblur="getIsbn()">
                 <datalist id="ISBN">
                     <option>abc</option>
                 </datalist>

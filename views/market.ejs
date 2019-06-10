@@ -28,12 +28,7 @@
             </p> <hr>
                   
             <% for(var i = 0; i< book.length; i++) { %>
-            
-                
-                       
-               
-
-
+                <% if(book[i]["owned by"].length>0) { %>
                     <div class="post-container">
                             
                             <p><span class="post-thumb" id="photo"><img src="<%= book[i]["owned by"][0].URL %>"></span></p>
@@ -45,12 +40,9 @@
                                 <p><span id="expiry">Language : <%= book[i].language %></span></p>
         
                             </div>
-                        </div>
-                
-            
-        
-            <hr>
-        
+                        </div>       
+                    <hr>
+                <% } %>
             <% } %>
         </div></div>
     <% include partials/footer %>
