@@ -7,7 +7,7 @@ const basename = path.basename(__filename);
 // const env = process.env.NODE_ENV || 'development';
 // var config = require(path.join(__dirname, '..', 'config', 'config.json'))[env];
 // var sequelize = new Sequelize(config.database, config.username, config.password, config);
-var sequelize = new Sequelize('postgres://lupxiiaufiffys:4cf19e92e5f8b823fa13de42f2a8eba98926ba97c6cc2db98862ab0ca4768a39@ec2-54-75-230-253.eu-west-1.compute.amazonaws.com:5432/d7hapcm2tv4kbj');
+var sequelize = new Sequelize('postgres://qojnipcwitkayf:6818780e70eda4341aecee26c241a4136e0c0f2df935c9dcbe13648e9ca06956@ec2-79-125-4-72.eu-west-1.compute.amazonaws.com:5432/d98i1u0p366nee');
 
 const db = {};
 
