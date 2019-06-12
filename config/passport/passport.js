@@ -40,7 +40,7 @@ module.exports = function(passport, user) {
                         city: req.body.city
                     };
                     console.log(data);
-                    User.create(data, {fields: ['email','password','firstname','lastname','phone','city']}).then(function(newUser, created) {
+                    User.create(data, {fields: ['email','password','firstname','lastname','phone','campus','city']}).then(function(newUser, created) {
                         if (!newUser) {
                             return done(null, false);
                         }
