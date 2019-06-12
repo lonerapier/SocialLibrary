@@ -67,7 +67,7 @@
                 <% if( book[0]["owned by"][i].borrowed==false ) { %>
                     <div class="userList" name=<%= book[0]["owned by"][i].user.city%> >
                         <hr>
-                        <img style="display: inline-block;" src="<%= book[0]["owned by"][0].URL %>" height=180px width=130px>
+                        <img style="display: inline-block;" src="<%= book[0]["owned by"][i].URL %>" height=180px width=130px>
                         <div style="display:inline-block; margin:2px; vertical-align: top;">
                             <p>Owner : <%= book[0]["owned by"][i].user.firstname %></p>
                             <p>For <%= book[0]["owned by"][i].status %></p>
