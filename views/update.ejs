@@ -55,6 +55,17 @@
                 <!-- Password
                 <input type="password" id="defaultUpdateFormPassword" class="form-control mb-4" placeholder="Password" name="password"> -->
 
+                <p>Select your Campus</p>
+                <div class="mb-4">
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" class="custom-control-input" id="addListLend" name="campus" value="north">
+                    <label class="custom-control-label" for="addListLend">North Campus</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" class="custom-control-input" id="addListSell" name="campus" value="south">
+                    <label class="custom-control-label" for="addListSell">South Campus</label>
+                </div></div>
+
                 <!-- City -->
                 <p>City</p>
                 <input type="city" id="defaultUpdateFormEmail" class="form-control mb-4" value="<%= user.city %>" placeholder="<%= user.city %>" name="city" required>
