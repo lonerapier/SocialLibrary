@@ -11,7 +11,7 @@
   "author": "Sambhav Dusad, Saransh Sharma, Satyam Shukla",
   "license": "ISC",
   "dependencies": {
-    "async": "^3.0.1",
+    "async": "^3.2.2",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.19.0",
     "connect-flash": "^0.1.1",
